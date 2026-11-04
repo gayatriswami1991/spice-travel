@@ -75,8 +75,8 @@ tpl = re.sub(r'\n\s*<g class="pf" fill="#ffffff" opacity="\.85"><path d="M610 12
 # ---------------- SEO: meta + JSON-LD schema ----------------
 import json, html as _h
 URL = 'https://spicetravel.co.ke/best-travel-agent-nairobi/'
-TITLE = 'Best Corporate Travel Agent in Nairobi | Spice Travel'
-DESC = 'IATA-certified corporate travel agent in Nairobi. Corporate travel management, flight booking and holiday packages. Free quote and call back today.'
+TITLE = 'Corporate Travel Agent Nairobi | Free Quote | Spice Travel'
+DESC = 'IATA-certified since 1994 and rated 5 on Google. Corporate travel, flight booking and holiday packages in Nairobi. Get a free quote and call back today!'
 OGIMG = 'https://spicetravel.co.ke/wp-content/uploads/2026/11/hero-tented-suite.webp'
 assert len(TITLE) <= 60, len(TITLE)
 assert 120 <= len(DESC) <= 160, len(DESC)
