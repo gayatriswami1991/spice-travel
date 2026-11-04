@@ -37,3 +37,14 @@ Pick one WhatsApp number and one email for the ad pages.
 
 ## Photos received but not yet in the repo
 Team photo (Emirates visit), Ritz-Carlton Mara, Bamburi, JW Marriott, Hemingways posters, balloon sunrise (Mara), rhino, hartebeest herd, two safari-vehicle photos. Only the Taita, Sarova, Loisaba, Elsa's posters, one vehicle photo and the leopard video are used so far.
+
+## Added from Spice_Travel_Website_Assets_2.zip (content notes)
+
+| Offer | Details | Validity | Status |
+| --- | --- | --- | --- |
+| Sand River Maasai Mara and Elephant Pepper Camp, Pay 2 Stay 3 | Complimentary 3rd night. Return flights to Wilson Airstrip, bush breakfast, two shared game drives daily, bush sundowner, airport transfers. KES 143,100 pp sharing (1 Nov to 19 Dec 2026). The 1 to 31 Oct 2026 rate of KES 166,425 has ended. | to 19 Dec 2026 | Live (shown with a days-left counter on the page) |
+| The Pearl Mara, flying package | From USD 1,400 for 2 nights, private suite, full board, airstrip transfers | none shown | Confirm |
+| Hemingways Watamu, Pay 3 Stay 4 | Rooms and suites | to 19 Dec 2026 | Live |
+| Surana Mara Camp opening offer | Stay 3 nights: free balloon safari. Stay 4 nights: free return scheduled flights from Nairobi | none shown | Confirm |
+
+The landing page hides an offer automatically after its end date. The sunrise-balloons image on the page is the AI-generated illustration from the zip; it is used only as a generic mood image.

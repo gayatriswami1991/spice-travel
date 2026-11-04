@@ -33,7 +33,7 @@
 .sl li{padding:0;margin:0;line-height:1.5}
 .sl .w{max-width:1180px;margin:0 auto;padding:0 20px}
 .sl .sec{padding:72px 0}
-.sl .alt{background:var(--s)}
+.sl .alt{background:linear-gradient(180deg,#f4f6fa,#eaf1fa)}
 .sl .eyebrow{display:block;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--b);margin-bottom:8px}
 .sl .head{max-width:720px;margin:0 auto 38px;text-align:center}
 .sl .head h2{font-size:clamp(26px,3.4vw,38px);margin-bottom:12px}
@@ -178,12 +178,48 @@
 .sl .note{font-size:12.5px;color:var(--mu);text-align:center;margin-top:20px}
 .sl .note a{color:var(--b);text-decoration:underline}
 
-/* gallery */
-.sl .gal{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px}
-.sl .gal figure{margin:0;position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/3;background:#dfe6f0}
+/* gallery mosaic */
+.sl .gal{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:230px;gap:14px}
+.sl .gal figure{margin:0;position:relative;border-radius:14px;overflow:hidden;background:#dfe6f0}
+.sl .gal .g1{grid-column:span 2;grid-row:span 2}
+.sl .gal .g4{grid-column:span 2}
 .sl .gal img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
 .sl .gal figure:hover img{transform:scale(1.07)}
 .sl .gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 12px;color:#fff;font-size:14px;font-weight:500;background:linear-gradient(transparent,rgba(9,22,40,.75))}
+
+/* destinations marquee */
+.sl .mq{overflow:hidden;background:var(--n);color:#fff;padding:15px 0;white-space:nowrap}
+.sl .mq-in{display:inline-flex;animation:slMq 45s linear infinite}
+.sl .mq:hover .mq-in{animation-play-state:paused}
+.sl .mq-set{display:inline-flex;align-items:center;flex:none}
+.sl .mq-set span{font-size:15px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:0 22px}
+.sl .mq-set i{color:var(--am);font-style:normal}
+@keyframes slMq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* headline highlight + scroll progress */
+.sl .hl{background:linear-gradient(transparent 64%,rgba(245,166,35,.6) 64%);padding:0 4px}
+.sl .prog-top{position:fixed;top:0;left:0;right:0;height:3px;z-index:100000}
+.sl .prog-top i{display:block;height:100%;width:0;background:var(--am)}
+
+/* limited-time offers */
+.sl .ofs{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.sl .of{position:relative;background:linear-gradient(160deg,#0d1f3c,#12437a);color:#fff;border-radius:16px;padding:24px 20px 22px;display:flex;flex-direction:column;overflow:hidden}
+.sl .of::after{content:"";position:absolute;right:-40px;top:-40px;width:130px;height:130px;border-radius:50%;background:rgba(245,166,35,.16)}
+.sl .of .lab{display:inline-block;align-self:flex-start;background:var(--am);color:#1b1200;font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;border-radius:50px;padding:4px 12px;margin-bottom:12px}
+.sl .of h3{color:#fff;font-size:20px;margin-bottom:6px}
+.sl .of .big{font-size:26px;font-weight:700;margin:4px 0 2px}
+.sl .of .sm{font-size:13px;opacity:.8;margin-bottom:12px}
+.sl .of ul{font-size:14px;opacity:.95;margin-bottom:16px}
+.sl .of ul li::before{content:"\2713\00a0";color:var(--am);font-weight:700}
+.sl .of .left{font-size:13px;font-weight:600;color:#ffd58a;margin-bottom:10px}
+.sl .of .btn{margin-top:auto;padding:12px 16px;font-size:14.5px;width:100%}
+
+/* cinematic parallax band */
+.sl .cine{position:relative;color:#fff;text-align:center;padding:120px 0;background:#3a2410 url('assets/sunrise-balloons.webp') center/cover fixed no-repeat;isolation:isolate}
+.sl .cine::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(9,22,40,.55),rgba(9,22,40,.7));z-index:-1}
+.sl .cine h2{color:#fff;font-size:clamp(28px,4.4vw,50px);max-width:820px;margin:0 auto 14px}
+.sl .cine p{font-size:19px;font-weight:300;max-width:620px;margin:0 auto 26px;opacity:.95}
+.sl .cine .eyebrow{color:var(--am)}
 
 /* who */
 .sl .who{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -258,27 +294,18 @@
 .sl .stk{display:none}
 .sl .float{position:fixed;right:22px;bottom:22px;z-index:99990;padding:14px 24px;font-size:15px}
 
-/* popup */
-.sl .pop{position:fixed;inset:0;z-index:100001;display:flex;align-items:center;justify-content:center;padding:18px}
-.sl .pop-bg{position:absolute;inset:0;background:rgba(9,22,40,.7)}
-.sl .pop-card{position:relative;background:#fff;border-radius:18px;max-width:520px;width:100%;padding:32px 28px 26px;box-shadow:0 30px 80px rgba(0,0,0,.45);animation:slPop .3s ease}
-@keyframes slPop{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
-.sl .pop-card h3{font-size:26px;margin-bottom:8px;padding-right:30px}
-.sl .pop-card p.s{color:var(--mu);margin-bottom:16px}
-.sl .pop-x{position:absolute;top:10px;right:12px;width:36px;height:36px;border:0;background:none;font-size:28px;line-height:1;color:var(--mu);cursor:pointer}
-.sl .pop .qf-row{grid-template-columns:1fr}
-.sl .pop .qf .btn{width:100%}
-
 @media(max-width:1020px){
   .sl .hero .w,.sl .why,.sl .qband .w{grid-template-columns:1fr;gap:30px}
   .sl .pk{grid-template-columns:repeat(2,1fr)}
-  .sl .who,.sl .steps{grid-template-columns:repeat(2,1fr)}
+  .sl .who,.sl .steps,.sl .ofs{grid-template-columns:repeat(2,1fr)}
   .sl .tcard{flex:0 0 calc((100% - 18px)/2)}
   .sl .tn.prev{left:2px}.sl .tn.next{right:2px}
 }
 @media(max-width:760px){
   .sl .sec{padding:52px 0}
   .sl .pains,.sl .svc,.sl .gal{grid-template-columns:1fr}
+  .sl .gal figure{grid-column:auto!important;grid-row:auto!important}
+  .sl .cine{background-attachment:scroll;padding:84px 0}
   .sl .strip .w{grid-template-columns:1fr 1fr}
   .sl .qf-row{grid-template-columns:1fr}
   .sl .qf .btn{width:100%}
@@ -291,18 +318,20 @@
   .sl .tcard{flex:0 0 88%}
 }
 @media(max-width:520px){
-  .sl .pk,.sl .who,.sl .steps,.sl .opts{grid-template-columns:1fr}
+  .sl .pk,.sl .who,.sl .steps,.sl .opts,.sl .ofs{grid-template-columns:1fr}
   .sl .hero .w{padding-top:30px;padding-bottom:38px}
   .sl .card{padding:20px}
   .sl .after{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){
-  .sl .hero-bg,.sl .pulse,.sl .live.open i{animation:none}
+  .sl .hero-bg,.sl .pulse,.sl .live.open i,.sl .mq-in{animation:none}
+  .sl .cine{background-attachment:scroll}
   .sl.sl-js .rv-in{opacity:1;transform:none;transition:none}
 }
 </style>
 
 <div class="sl" id="sl-top">
+<div class="prog-top" id="sl-prog"><i></i></div>
 
 <!-- HERO -->
 <section class="hero"><div class="hero-bg"></div><div class="w">
@@ -311,7 +340,7 @@
       <span class="badge">IATA Certified &middot; Nairobi since 1994</span>
       <span class="live" id="sl-live" hidden><i></i><span></span></span>
     </div>
-    <h1>Corporate Travel Agent in Nairobi</h1>
+    <h1>Corporate Travel Agent in <span class="hl">Nairobi</span></h1>
     <p class="lead">Your corporate travel agency for business flights, hotels, conference travel and team-building retreats. One IATA-certified team for companies, NGOs and event organisers. Get your free corporate quote the same day.</p>
     <ul class="ticks">
       <li><b>One point of contact</b> for flights, hotels, transfers and visas</li>
@@ -410,6 +439,12 @@
 </div>
 <div class="acc"><span>Accredited and trusted</span><img src="https://spicetravel.co.ke/wp-content/uploads/2026/03/Logos-e1698318654509.webp" alt="IATA, Amadeus and KATA accreditation logos" width="1397" height="186" loading="lazy" onerror="this.parentNode.style.display='none'"></div></div>
 
+<!-- DESTINATIONS MARQUEE -->
+<div class="mq" aria-hidden="true"><div class="mq-in">
+  <div class="mq-set"><span>Maasai Mara</span><i>&#10022;</i><span>Amboseli</span><i>&#10022;</i><span>Laikipia</span><i>&#10022;</i><span>Meru</span><i>&#10022;</i><span>Taita Hills</span><i>&#10022;</i><span>Mombasa</span><i>&#10022;</i><span>Watamu</span><i>&#10022;</i><span>Diani</span><i>&#10022;</i><span>Naivasha</span><i>&#10022;</i></div>
+  <div class="mq-set"><span>Maasai Mara</span><i>&#10022;</i><span>Amboseli</span><i>&#10022;</i><span>Laikipia</span><i>&#10022;</i><span>Meru</span><i>&#10022;</i><span>Taita Hills</span><i>&#10022;</i><span>Mombasa</span><i>&#10022;</i><span>Watamu</span><i>&#10022;</i><span>Diani</span><i>&#10022;</i><span>Naivasha</span><i>&#10022;</i></div>
+</div></div>
+
 <!-- PAINS (ICP) -->
 <section class="sec"><div class="w">
   <div class="head"><span class="eyebrow">Built for HR, admin and event teams</span>
@@ -488,12 +523,52 @@
   <p class="note">* Indicative per-person-sharing rates, subject to season and availability. Final group rates are confirmed in your quote. More options: <a href="/holiday-packages/">holiday packages</a> and <a href="/kenya-tour-operators/">Kenya tour operators</a>.</p>
 </div></section>
 
+<!-- LIMITED-TIME OFFERS -->
+<section class="sec alt" id="sl-offers"><div class="w">
+  <div class="head"><span class="eyebrow">Limited-time group offers</span>
+    <h2>Seasonal Safari and Beach Offers for Teams</h2>
+    <p>Current offers for year-end retreats and incentive trips. Ask for a group rate and we will quote your headcount.</p></div>
+  <div class="ofs">
+    <article class="of"><span class="lab">Pay 2 Stay 3</span><h3>Sand River Maasai Mara and Elephant Pepper Camp</h3>
+      <p class="big">KES 143,100</p><p class="sm">per person sharing &middot; 1 Nov to 19 Dec 2026</p>
+      <ul><li>Return flights to Wilson Airstrip</li><li>Bush breakfast and 2 game drives daily</li><li>Bush sundowner and transfers</li></ul>
+      <p class="left" data-until="2026-12-19"></p>
+      <button type="button" class="btn btn-am sl-pick" data-pkg="Sand River Maasai Mara and Elephant Pepper Camp (Pay 2 Stay 3)">Get a group quote</button></article>
+    <article class="of"><span class="lab">Flying package</span><h3>The Pearl Mara</h3>
+      <p class="big">From USD 1,400</p><p class="sm">for 2 nights</p>
+      <ul><li>Private suite, full board</li><li>Transfers to and from Mara airstrips</li></ul>
+      <button type="button" class="btn btn-am sl-pick" data-pkg="The Pearl Mara (Flying package)">Get a group quote</button></article>
+    <article class="of"><span class="lab">Pay 3 Stay 4</span><h3>Hemingways Watamu</h3>
+      <p class="big">4th night free</p><p class="sm">hotel rooms and suites &middot; valid till 19 Dec 2026</p>
+      <ul><li>Beachfront team retreat</li><li>Rooms and suites included</li></ul>
+      <p class="left" data-until="2026-12-19"></p>
+      <button type="button" class="btn btn-am sl-pick" data-pkg="Hemingways Watamu (Pay 3 Stay 4)">Get a group quote</button></article>
+    <article class="of"><span class="lab">Opening offer</span><h3>Surana Mara Camp</h3>
+      <p class="big">Free balloon safari</p><p class="sm">when you stay 3 nights</p>
+      <ul><li>Stay 4 nights: free return scheduled flights from Nairobi</li></ul>
+      <button type="button" class="btn btn-am sl-pick" data-pkg="Surana Mara Camp (Opening offer)">Get a group quote</button></article>
+  </div>
+  <!-- TODO before launch: confirm every offer, rate and validity date with the team (taken from Instagram posters). -->
+  <p class="note">* Rates are per person sharing, subject to availability and terms. Final group pricing is confirmed in your quote.</p>
+</div></section>
+
+<!-- CINEMATIC BAND -->
+<section class="cine"><div class="w">
+  <span class="eyebrow">Corporate retreats in Kenya</span>
+  <h2>Give your team a sunrise they will talk about all year</h2>
+  <p>Balloon safaris over the Mara, bush dinners and quiet lodges. We plan the whole trip, you enjoy it with your people.</p>
+  <a class="btn btn-am sl-cta pulse" href="#sl-form">Plan Our Retreat</a>
+</div></section>
+
 <!-- GALLERY -->
-<section class="sec" style="padding-top:0"><div class="w">
+<section class="sec" style="padding-bottom:0"><div class="w">
+  <div class="head" style="margin-bottom:26px"><span class="eyebrow">Experiences</span><h2>What your retreat could look like</h2></div>
   <div class="gal">
-    <figure><img src="assets/lodge-pool-valley.webp" alt="Safari lodge pool with valley views for group retreats" loading="lazy" width="900" height="526"><figcaption>Bush lodges with room for the whole team</figcaption></figure>
-    <figure><img src="assets/beach-resort-pool.webp" alt="Beachfront resort pool for corporate beach retreats" loading="lazy" width="900" height="514"><figcaption>Beach retreats on the coast</figcaption></figure>
-    <figure><img src="assets/bush-dinner-sunset.webp" alt="Group sundowner dinner in the Kenyan bush" loading="lazy" width="900" height="506"><figcaption>Sundowner dinners in the bush</figcaption></figure>
+    <figure class="g1"><img src="assets/lodge-pool-valley.webp" alt="Safari lodge pool with valley views for group retreats" loading="lazy" width="900" height="526"><figcaption>Bush lodges with room for the whole team</figcaption></figure>
+    <figure class="g2"><img src="assets/balloon-sunrise-real.webp" alt="Hot air balloons over the Maasai Mara at sunrise" loading="lazy" width="900" height="900"><figcaption>Sunrise balloon safaris</figcaption></figure>
+    <figure class="g3"><img src="assets/beach-resort-pool.webp" alt="Beachfront resort pool for corporate beach retreats" loading="lazy" width="900" height="514"><figcaption>Beach retreats on the coast</figcaption></figure>
+    <figure class="g4"><img src="assets/bush-dinner-sunset.webp" alt="Group sundowner dinner in the Kenyan bush" loading="lazy" width="900" height="506"><figcaption>Sundowner dinners in the bush</figcaption></figure>
+    <figure class="g5"><img src="assets/hartebeest-herd.webp" alt="Hartebeest herd on a Kenya game drive" loading="lazy" width="900" height="900"><figcaption>Game drives with expert guides</figcaption></figure>
   </div>
 </div></section>
 
@@ -617,22 +692,6 @@
 <div class="stk"><a class="btn btn-am sl-cta pulse" href="#sl-form">Request a Call Back</a></div>
 <a class="btn btn-am sl-cta float" id="sl-float" href="#sl-form" hidden>Request a Call Back</a>
 
-<!-- EXIT POPUP -->
-<div class="pop" id="sl-pop" hidden role="dialog" aria-modal="true" aria-labelledby="sl-pop-t">
-  <div class="pop-bg" data-close></div>
-  <div class="pop-card">
-    <button type="button" class="pop-x" aria-label="Close" data-close>&times;</button>
-    <h3 id="sl-pop-t">Before you go: get your free corporate quote</h3>
-    <p class="s">Leave your number and a consultant will call you back. No obligation.</p>
-    <form class="qf" data-quick="exit" novalidate>
-      <div class="qf-row"><input name="qn" type="text" placeholder="Your name" autocomplete="name" aria-label="Your name"><input name="qp" type="tel" placeholder="Phone number" autocomplete="tel" inputmode="tel" aria-label="Phone number"><button type="submit" class="btn btn-am">Call Me Back</button></div>
-      <p class="fe">Please enter your name and a valid phone number</p>
-      <p class="fine">We call you about this request only.</p>
-      <div class="qf-ok">Thank you. We will call you shortly.</div>
-    </form>
-  </div>
-</div>
-
 <!-- HIDDEN REAL FORM: your existing Contact Form 7 form (id 1438). All forms on this page submit through it. -->
 <div class="sl-cf7" aria-hidden="true"><div class="wpcf7 no-js" id="wpcf7-f1438-p1096-o1" lang="en-US" dir="ltr" data-wpcf7-id="1438">
 <form action="/#wpcf7-f1438-p1096-o1" method="post" class="wpcf7-form init" novalidate="novalidate">
@@ -703,7 +762,7 @@
   if (hasIO) {
     if (!reduce) {
       root.className = root.className + ' sl-js';
-      var targets = qa('.head,.pain,.svc .it,.pc,.who div,.steps .st,.gal figure,.tsum,.tw,.seo,.links,.qband .w > div,.after,.acc');
+      var targets = qa('.head,.pain,.svc .it,.pc,.who div,.steps .st,.gal figure,.of,.tsum,.tw,.seo,.links,.qband .w > div,.after,.acc');
       targets.forEach(function (el) {
         el.className = el.className + ' rv-in';
         var idx = Array.prototype.indexOf.call(el.parentNode.children, el);
@@ -789,7 +848,7 @@
     if (f) { f.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   }
   qa('.sl-cta').forEach(function (a) {
-    a.addEventListener('click', function (e) { e.preventDefault(); track('cta_click'); closePop(); toForm(); });
+    a.addEventListener('click', function (e) { e.preventDefault(); track('cta_click'); toForm(); });
   });
   qa('.sl-pick').forEach(function (b) {
     b.addEventListener('click', function () {
@@ -940,7 +999,6 @@
     } else {
       ctx.el.classList.add('done');
       track('generate_lead', { lead_type: 'quick_callback', source: ctx.source, package: state.pkg || 'none' });
-      if (ctx.source === 'exit') { setTimeout(closePop, 3000); }
     }
     pending = null;
   });
@@ -998,6 +1056,12 @@
   if (!reduce) { setInterval(function () { if (!hover) { slide(1); } }, 6500); }
 
   /* ---------- floating CTA (desktop) ---------- */
+  var progBar = q('#sl-prog i');
+  function updProg() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - window.innerHeight;
+    progBar.style.width = ((max > 0) ? (window.scrollY / max * 100) : 0) + '%';
+  }
   var floatBtn = q('#sl-float');
   function updFloat() {
     var f = q('#sl-form').getBoundingClientRect();
@@ -1006,40 +1070,24 @@
     if (window.scrollY > 600) { if (!inView) { show = true; } }
     floatBtn.hidden = !show;
   }
-  window.addEventListener('scroll', updFloat, { passive: true });
+  window.addEventListener('scroll', function () { updFloat(); updProg(); }, { passive: true });
   updFloat();
+  updProg();
 
-  /* ---------- exit-intent popup ---------- */
-  var pop = q('#sl-pop');
-  var popShown = false;
-  var lastFocus = null;
-  var t0 = Date.now();
-  function closePop() {
-    if (pop.hidden) { return; }
-    pop.hidden = true;
-    if (lastFocus) { try { lastFocus.focus(); } catch (e) { } }
-  }
-  function openPop() {
-    if (popShown) { return; }
-    if (leadDone) { return; }
-    try { if (sessionStorage.getItem('slpop')) { return; } } catch (e) { }
-    popShown = true;
-    try { sessionStorage.setItem('slpop', '1'); } catch (e) { }
-    lastFocus = document.activeElement;
-    pop.hidden = false;
-    var i = pop.querySelector('input');
-    if (i) { i.focus(); }
-    track('popup_open');
-  }
-  qa('[data-close]', pop).forEach(function (b) { b.addEventListener('click', closePop); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closePop(); } });
-  document.addEventListener('mouseout', function (e) {
-    if (e.relatedTarget) { return; }
-    if (e.clientY > 10) { return; }
-    if (Date.now() - t0 < 8000) { return; }
-    openPop();
+  /* ---------- offer countdown (hides an offer after its end date) ---------- */
+  qa('[data-until]').forEach(function (el) {
+    var d = new Date(el.getAttribute('data-until') + 'T23:59:59+03:00');
+    var left = Math.ceil((d.getTime() - Date.now()) / 86400000);
+    if (left < 0) {
+      var card = el.closest('.of');
+      if (card) { card.hidden = true; }
+    } else {
+      el.textContent = (left === 0) ? 'Offer ends today' : ((left === 1) ? '1 day left' : (left + ' days left'));
+    }
   });
-  if ('ontouchstart' in window) { setTimeout(openPop, 55000); }
+  var anyOffer = qa('.of').filter(function (c) { return !c.hidden; });
+  if (anyOffer.length === 0) { var so = q('#sl-offers'); if (so) { so.hidden = true; } }
+
 })();
 </script>
 <script>
