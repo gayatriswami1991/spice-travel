@@ -1,0 +1,228 @@
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://spicetravel.co.ke/best-travel-agent-nairobi/#webpage",
+   "url": "https://spicetravel.co.ke/best-travel-agent-nairobi/",
+   "name": "Best Corporate Travel Agent in Nairobi | Spice Travel",
+   "description": "IATA-certified corporate travel agent in Nairobi. Corporate travel management, flight booking and holiday packages. Free quote and call back today.",
+   "inLanguage": "en-KE",
+   "isPartOf": {
+    "@id": "https://spicetravel.co.ke/#website"
+   },
+   "about": {
+    "@id": "https://spicetravel.co.ke/#organization"
+   },
+   "breadcrumb": {
+    "@id": "https://spicetravel.co.ke/best-travel-agent-nairobi/#breadcrumb"
+   },
+   "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://spicetravel.co.ke/wp-content/uploads/2026/11/hero-tented-suite.webp"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "@id": "https://spicetravel.co.ke/best-travel-agent-nairobi/#breadcrumb",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://spicetravel.co.ke/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Corporate Travel Agent in Nairobi",
+     "item": "https://spicetravel.co.ke/best-travel-agent-nairobi/"
+    }
+   ]
+  },
+  {
+   "@type": [
+    "TravelAgency",
+    "LocalBusiness"
+   ],
+   "@id": "https://spicetravel.co.ke/#organization",
+   "name": "Spice Travel Ltd",
+   "url": "https://spicetravel.co.ke/",
+   "logo": "https://spicetravel.co.ke/wp-content/uploads/2026/03/Spice-Travel-Monochrome-Logo-1.png",
+   "image": "https://spicetravel.co.ke/wp-content/uploads/2026/11/hero-tented-suite.webp",
+   "telephone": "+254740633759",
+   "email": "sales@spicetravel.co.ke",
+   "description": "IATA-certified travel agency in Nairobi since 1994: corporate travel management, flight booking, holiday packages, safaris and visa assistance.",
+   "foundingDate": "1994",
+   "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "The Westwood, Vale Close, Off Ring Road, Parklands, 2nd Floor, Unit D",
+    "addressLocality": "Westlands, Nairobi",
+    "addressCountry": "KE"
+   },
+   "areaServed": [
+    {
+     "@type": "City",
+     "name": "Nairobi"
+    },
+    {
+     "@type": "Country",
+     "name": "Kenya"
+    }
+   ],
+   "openingHoursSpecification": [
+    {
+     "@type": "OpeningHoursSpecification",
+     "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+     ],
+     "opens": "08:30",
+     "closes": "17:30"
+    },
+    {
+     "@type": "OpeningHoursSpecification",
+     "dayOfWeek": "Saturday",
+     "opens": "08:30",
+     "closes": "13:00"
+    }
+   ],
+   "sameAs": [
+    "https://web.facebook.com/spicetravellt",
+    "https://www.instagram.com/spicetravel254/",
+    "https://www.youtube.com/@SpiceTravelLtd"
+   ]
+  },
+  {
+   "@type": "Service",
+   "@id": "https://spicetravel.co.ke/best-travel-agent-nairobi/#corporate",
+   "name": "Corporate travel management",
+   "description": "Business flights, hotels, conference travel, team retreats and itemised invoicing for companies, NGOs and event teams in Nairobi.",
+   "serviceType": "Corporate travel management",
+   "provider": {
+    "@id": "https://spicetravel.co.ke/#organization"
+   },
+   "areaServed": {
+    "@type": "City",
+    "name": "Nairobi"
+   }
+  },
+  {
+   "@type": "Service",
+   "@id": "https://spicetravel.co.ke/best-travel-agent-nairobi/#flights",
+   "name": "Flight booking",
+   "description": "Domestic and international flight tickets on any airline for individuals, families and corporate travellers.",
+   "serviceType": "Flight booking",
+   "provider": {
+    "@id": "https://spicetravel.co.ke/#organization"
+   },
+   "areaServed": {
+    "@type": "City",
+    "name": "Nairobi"
+   }
+  },
+  {
+   "@type": "Service",
+   "@id": "https://spicetravel.co.ke/best-travel-agent-nairobi/#packages",
+   "name": "Holiday and safari packages",
+   "description": "Kenya safari, beach and international holiday packages from Nairobi, including flights, hotels, transfers and visa help.",
+   "serviceType": "Holiday and safari packages",
+   "provider": {
+    "@id": "https://spicetravel.co.ke/#organization"
+   },
+   "areaServed": {
+    "@type": "City",
+    "name": "Nairobi"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://spicetravel.co.ke/best-travel-agent-nairobi/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What does a corporate travel agent do?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A corporate travel agent books and manages business travel for your company: flights, hotels, transfers, visas and trip changes, with one point of contact, negotiated rates and itemised invoicing."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why choose Spice Travel as your travel agent in Nairobi?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "We are IATA certified, have served Nairobi since 1994, are rated 5 on Google and have managed groups of more than 100 travellers. One team handles flights, hotels, transfers, visas and insurance."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What group sizes do you handle?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "From a single business traveller to groups of 100+. Our largest coordinated event had more than 100 attendees, including group flights, hotel blocks and transfers."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do you offer team building and corporate retreat packages in Kenya?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. We organise team building and corporate retreats at safari lodges, bush resorts and coastal hotels, including transport, meals and activities. See the retreat packages above for starting prices."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can you book flights on any airline?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. We book domestic and international flights through Amadeus and Travelport systems, including group and last-minute bookings."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How fast will I get a quote?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A consultant calls you back and sends a written quote the same day on working days. Office hours are Mon\u2013Fri 8:30am\u20135:30pm and Sat 8:30am\u20131pm."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can you invoice our company?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. We prepare itemised corporate invoices. If your team travels often, ask about an ongoing business travel arrangement during the call."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do you handle conferences, NGOs and international delegations?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, inbound and outbound: group flights, visa assistance, hotel blocks, ground transfers and arrival logistics for conference delegates and project teams."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do you also sell holiday and safari packages?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. We offer Kenya safari packages, beach holidays and international trips for individuals, families and groups. Prices on this page are indicative starting prices per person sharing."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can you arrange car hire, transfers and travel insurance?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. We add airport transfers, car hire and travel insurance to the same quote, so everything is booked and invoiced together."
+     }
+    }
+   ]
+  }
+ ]
+}

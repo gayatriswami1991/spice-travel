@@ -7,6 +7,7 @@ import base64, pathlib, re
 d = pathlib.Path(__file__).parent
 corp = (d.parent / 'corporate-landing' / 'divi-snippet.html').read_text()
 css = re.search(r'<style>\n(.*?)\n</style>', corp, re.S).group(1)
+css = re.sub(r"url\('assets/[^']+'\)", 'none', css)
 
 ICON_SAFARI = '<svg viewBox="0 0 24 24"><path d="M3 20L12 4l9 16z"/><path d="M12 4v16M9 20l3-5 3 5"/></svg>'
 ICON_STAR = '<svg viewBox="0 0 24 24"><path d="M12 3l2.600 5.600 6 .8-4.400 4.200 1.100 6L12 16.800 6.700 19.600l1.100-6L3.400 9.400l6-.8z"/></svg>'
@@ -70,45 +71,91 @@ def category(cat):
 tpl = (d / 'template.html').read_text()
 # drop the unused decorative group in the team illustration
 tpl = re.sub(r'\n\s*<g class="pf" fill="#ffffff" opacity="\.85"><path d="M610 120[^\n]*</g>', '', tpl)
-snip = (tpl.replace('@@CSS@@', css)
+
+# ---------------- SEO: meta + JSON-LD schema ----------------
+import json, html as _h
+URL = 'https://spicetravel.co.ke/best-travel-agent-nairobi/'
+TITLE = 'Best Corporate Travel Agent in Nairobi | Spice Travel'
+DESC = 'IATA-certified corporate travel agent in Nairobi. Corporate travel management, flight booking and holiday packages. Free quote and call back today.'
+OGIMG = 'https://spicetravel.co.ke/wp-content/uploads/2026/11/hero-tented-suite.webp'
+assert len(TITLE) <= 60, len(TITLE)
+assert 120 <= len(DESC) <= 160, len(DESC)
+
+def strip(t):
+    t = re.sub(r'<[^>]+>', '', t)
+    return _h.unescape(t).replace('\u00a0', ' ').strip()
+faq = []
+for m in re.finditer(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>', tpl, re.S):
+    faq.append({'@type': 'Question', 'name': strip(m.group(1)), 'acceptedAnswer': {'@type': 'Answer', 'text': strip(m.group(2))}})
+ORG = 'https://spicetravel.co.ke/#organization'
+def svc(name, desc, ident):
+    return {'@type': 'Service', '@id': URL + '#' + ident, 'name': name, 'description': desc, 'serviceType': name,
+            'provider': {'@id': ORG}, 'areaServed': {'@type': 'City', 'name': 'Nairobi'}}
+graph = [
+  {'@type': 'WebPage', '@id': URL + '#webpage', 'url': URL, 'name': TITLE, 'description': DESC, 'inLanguage': 'en-KE',
+   'isPartOf': {'@id': 'https://spicetravel.co.ke/#website'}, 'about': {'@id': ORG},
+   'breadcrumb': {'@id': URL + '#breadcrumb'}, 'primaryImageOfPage': {'@type': 'ImageObject', 'url': OGIMG}},
+  {'@type': 'BreadcrumbList', '@id': URL + '#breadcrumb', 'itemListElement': [
+      {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://spicetravel.co.ke/'},
+      {'@type': 'ListItem', 'position': 2, 'name': 'Corporate Travel Agent in Nairobi', 'item': URL}]},
+  {'@type': ['TravelAgency', 'LocalBusiness'], '@id': ORG, 'name': 'Spice Travel Ltd', 'url': 'https://spicetravel.co.ke/',
+   'logo': 'https://spicetravel.co.ke/wp-content/uploads/2026/03/Spice-Travel-Monochrome-Logo-1.png',
+   'image': OGIMG, 'telephone': '+254740633759', 'email': 'sales@spicetravel.co.ke',
+   'description': 'IATA-certified travel agency in Nairobi since 1994: corporate travel management, flight booking, holiday packages, safaris and visa assistance.',
+   'foundingDate': '1994',
+   'address': {'@type': 'PostalAddress', 'streetAddress': 'The Westwood, Vale Close, Off Ring Road, Parklands, 2nd Floor, Unit D',
+               'addressLocality': 'Westlands, Nairobi', 'addressCountry': 'KE'},
+   'areaServed': [{'@type': 'City', 'name': 'Nairobi'}, {'@type': 'Country', 'name': 'Kenya'}],
+   'openingHoursSpecification': [
+       {'@type': 'OpeningHoursSpecification', 'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], 'opens': '08:30', 'closes': '17:30'},
+       {'@type': 'OpeningHoursSpecification', 'dayOfWeek': 'Saturday', 'opens': '08:30', 'closes': '13:00'}],
+   'sameAs': ['https://web.facebook.com/spicetravellt', 'https://www.instagram.com/spicetravel254/', 'https://www.youtube.com/@SpiceTravelLtd']},
+  svc('Corporate travel management', 'Business flights, hotels, conference travel, team retreats and itemised invoicing for companies, NGOs and event teams in Nairobi.', 'corporate'),
+  svc('Flight booking', 'Domestic and international flight tickets on any airline for individuals, families and corporate travellers.', 'flights'),
+  svc('Holiday and safari packages', 'Kenya safari, beach and international holiday packages from Nairobi, including flights, hotels, transfers and visa help.', 'packages'),
+  {'@type': 'FAQPage', '@id': URL + '#faq', 'mainEntity': faq},
+]
+schema_json = json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=True, indent=1)
+assert '&' not in schema_json
+schema_tag = '<script type="application/ld+json">\n' + schema_json + '\n</script>'
+
+head_block = (
+ '<title>%s</title>\n'
+ '<meta name="description" content="%s">\n'
+ '<link rel="canonical" href="%s">\n'
+ '<meta name="robots" content="noindex, follow">\n'
+ '<meta property="og:type" content="website">\n'
+ '<meta property="og:locale" content="en_KE">\n'
+ '<meta property="og:site_name" content="Spice Travel Ltd">\n'
+ '<meta property="og:title" content="%s">\n'
+ '<meta property="og:description" content="%s">\n'
+ '<meta property="og:url" content="%s">\n'
+ '<meta property="og:image" content="%s">\n'
+ '<meta name="twitter:card" content="summary_large_image">\n'
+ '<meta name="twitter:title" content="%s">\n'
+ '<meta name="twitter:description" content="%s">\n'
+ '<meta name="twitter:image" content="%s">\n'
+) % (TITLE, DESC, URL, TITLE, DESC, URL, OGIMG, TITLE, DESC, OGIMG)
+(d / 'seo-head.html').write_text('<!-- Paste into the page head only if you do not use Yoast for these fields (WPCode: page-specific "Site Wide Header"). With Yoast, fill the same values in the Yoast box instead. -->\n' + head_block)
+(d / 'schema.jsonld').write_text(schema_json + '\n')
+
+snip = (tpl.replace('@@CSS@@', css).replace('@@SCHEMA@@', schema_tag)
            .replace('@@CATEGORIES@@', '\n'.join(category(c) for c in CATS))
            .replace('@@RETREATCARDS@@', '\n'.join(card(CARDS[k], True) for k in RETREAT)))
 (d / 'divi-snippet.html').write_text(snip)
 
 def embed(text):
-    # optional images: keep (embedded) if the file exists, otherwise drop the tag
+    # every <img> gets its own inline data URI: no script and no CSS url() is needed for images to show
     def opt(m):
         tag = m.group(0)
         name = re.search(r'src="assets/([^"]+)"', tag).group(1)
         return tag if (d / 'assets' / name).exists() else ''
     text = re.sub(r'<img [^>]*data-opt[^>]*>', opt, text)
     text = text.replace(' onerror="this.remove()"', '')
-    # CSS background urls would embed a second copy: blank them, a small script reuses the hero image instead
-    text = re.sub(r"url\('assets/[^']+'\)", 'none', text)
-    seen = set()
-    PH = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
-    def img(m):
-        tag = m.group(0)
-        mm = re.search(r'src="assets/([^"]+)"', tag)
-        if not mm:
-            return tag
-        name = mm.group(1)
-        key = name.rsplit('.', 1)[0]
-        if name in seen:
-            return tag.replace(mm.group(0), 'data-ik="%s" src="%s"' % (key, PH))
-        seen.add(name)
-        data = 'data:image/webp;base64,' + base64.b64encode((d / 'assets' / name).read_bytes()).decode()
-        return tag.replace(mm.group(0), 'data-ik="%s" src="%s"' % (key, data))
-    text = re.sub(r'<img [^>]*>', img, text)
-    reuse = ('<script>\n(function () {\n'
-             '  var m = {};\n'
-             '  var all = document.querySelectorAll("img[data-ik]");\n'
-             '  for (var i = 0; i < all.length; i++) { if (all[i].src.length > 300) { m[all[i].getAttribute("data-ik")] = all[i].src; } }\n'
-             '  for (var j = 0; j < all.length; j++) { var k = all[j].getAttribute("data-ik"); if (all[j].src.length < 300) { if (m[k]) { all[j].src = m[k]; } } }\n'
-             '  var c = document.querySelector(".sl .cine");\n'
-             '  if (c) { if (m["sunrise-balloons"]) { c.style.backgroundImage = "url(" + m["sunrise-balloons"] + ")"; } }\n'
-             '})();\n</script>')
-    return text + '\n' + reuse
+    def r(m):
+        f = d / 'assets' / m.group(1)
+        return 'data:image/webp;base64,' + base64.b64encode(f.read_bytes()).decode()
+    return re.sub(r"assets/([A-Za-z0-9_\-\.]+)", r, text)
 emb = embed(snip)
 (d / 'divi-snippet-with-images.html').write_text(emb)
 
@@ -141,7 +188,7 @@ document.addEventListener('submit', function (e) {
 });
 </script>'''
 page = ('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-        '<title>Best Corporate Travel Management in Nairobi | Spice Travel (preview)</title><style>body{margin:0}</style></head><body>'
+        '<title>' + TITLE + '</title><meta name="description" content="' + DESC + '"><meta name="robots" content="noindex, follow"><style>body{margin:0}</style></head><body>'
         + emb.replace('[contact-form-7 id="1438"]', form) + stub + '</body></html>')
 (d / 'index.html').write_text(page)
 for tag in ('style', 'script'):

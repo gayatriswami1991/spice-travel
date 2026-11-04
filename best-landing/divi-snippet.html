@@ -8,6 +8,13 @@
   3. If you use this lightweight file: upload /assets to Media Library, then Find/Replace "assets/" with your uploads URL.
   4. Yoast: set the page to noindex (ad page). The site's global header and footer stay as they are.
 
+  PAGE SETTINGS (set in Yoast, not in this file; same values are in seo-head.html):
+     URL            https://spicetravel.co.ke/best-travel-agent-nairobi/
+     Meta title     Best Corporate Travel Agent in Nairobi | Spice Travel
+     Meta descr.    IATA-certified corporate travel agent in Nairobi. Corporate travel management, flight booking and holiday packages. Free quote and call back today.
+     Robots         noindex, follow  (ad page; keeps it from competing with /corporate-travel-management/)
+  JSON-LD schema (WebPage, BreadcrumbList, TravelAgency, 3 Services, FAQPage) is already included below.
+
   ONE PAGE, MANY ADS. The headline, intro and the form adapt to the ad. Final URLs for Google Ads:
      corporate keywords (default)   https://spicetravel.co.ke/best-travel-agent-nairobi/
      "best travel agent" keywords   https://spicetravel.co.ke/best-travel-agent-nairobi/?s=agent
@@ -26,6 +33,236 @@
 
   NOTE: JS/CSS below intentionally contain no ampersand characters (WordPress rewrites bare "&").
 -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://spicetravel.co.ke/best-travel-agent-nairobi/#webpage",
+   "url": "https://spicetravel.co.ke/best-travel-agent-nairobi/",
+   "name": "Best Corporate Travel Agent in Nairobi | Spice Travel",
+   "description": "IATA-certified corporate travel agent in Nairobi. Corporate travel management, flight booking and holiday packages. Free quote and call back today.",
+   "inLanguage": "en-KE",
+   "isPartOf": {
+    "@id": "https://spicetravel.co.ke/#website"
+   },
+   "about": {
+    "@id": "https://spicetravel.co.ke/#organization"
+   },
+   "breadcrumb": {
+    "@id": "https://spicetravel.co.ke/best-travel-agent-nairobi/#breadcrumb"
+   },
+   "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://spicetravel.co.ke/wp-content/uploads/2026/11/hero-tented-suite.webp"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "@id": "https://spicetravel.co.ke/best-travel-agent-nairobi/#breadcrumb",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://spicetravel.co.ke/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Corporate Travel Agent in Nairobi",
+     "item": "https://spicetravel.co.ke/best-travel-agent-nairobi/"
+    }
+   ]
+  },
+  {
+   "@type": [
+    "TravelAgency",
+    "LocalBusiness"
+   ],
+   "@id": "https://spicetravel.co.ke/#organization",
+   "name": "Spice Travel Ltd",
+   "url": "https://spicetravel.co.ke/",
+   "logo": "https://spicetravel.co.ke/wp-content/uploads/2026/03/Spice-Travel-Monochrome-Logo-1.png",
+   "image": "https://spicetravel.co.ke/wp-content/uploads/2026/11/hero-tented-suite.webp",
+   "telephone": "+254740633759",
+   "email": "sales@spicetravel.co.ke",
+   "description": "IATA-certified travel agency in Nairobi since 1994: corporate travel management, flight booking, holiday packages, safaris and visa assistance.",
+   "foundingDate": "1994",
+   "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "The Westwood, Vale Close, Off Ring Road, Parklands, 2nd Floor, Unit D",
+    "addressLocality": "Westlands, Nairobi",
+    "addressCountry": "KE"
+   },
+   "areaServed": [
+    {
+     "@type": "City",
+     "name": "Nairobi"
+    },
+    {
+     "@type": "Country",
+     "name": "Kenya"
+    }
+   ],
+   "openingHoursSpecification": [
+    {
+     "@type": "OpeningHoursSpecification",
+     "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+     ],
+     "opens": "08:30",
+     "closes": "17:30"
+    },
+    {
+     "@type": "OpeningHoursSpecification",
+     "dayOfWeek": "Saturday",
+     "opens": "08:30",
+     "closes": "13:00"
+    }
+   ],
+   "sameAs": [
+    "https://web.facebook.com/spicetravellt",
+    "https://www.instagram.com/spicetravel254/",
+    "https://www.youtube.com/@SpiceTravelLtd"
+   ]
+  },
+  {
+   "@type": "Service",
+   "@id": "https://spicetravel.co.ke/best-travel-agent-nairobi/#corporate",
+   "name": "Corporate travel management",
+   "description": "Business flights, hotels, conference travel, team retreats and itemised invoicing for companies, NGOs and event teams in Nairobi.",
+   "serviceType": "Corporate travel management",
+   "provider": {
+    "@id": "https://spicetravel.co.ke/#organization"
+   },
+   "areaServed": {
+    "@type": "City",
+    "name": "Nairobi"
+   }
+  },
+  {
+   "@type": "Service",
+   "@id": "https://spicetravel.co.ke/best-travel-agent-nairobi/#flights",
+   "name": "Flight booking",
+   "description": "Domestic and international flight tickets on any airline for individuals, families and corporate travellers.",
+   "serviceType": "Flight booking",
+   "provider": {
+    "@id": "https://spicetravel.co.ke/#organization"
+   },
+   "areaServed": {
+    "@type": "City",
+    "name": "Nairobi"
+   }
+  },
+  {
+   "@type": "Service",
+   "@id": "https://spicetravel.co.ke/best-travel-agent-nairobi/#packages",
+   "name": "Holiday and safari packages",
+   "description": "Kenya safari, beach and international holiday packages from Nairobi, including flights, hotels, transfers and visa help.",
+   "serviceType": "Holiday and safari packages",
+   "provider": {
+    "@id": "https://spicetravel.co.ke/#organization"
+   },
+   "areaServed": {
+    "@type": "City",
+    "name": "Nairobi"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://spicetravel.co.ke/best-travel-agent-nairobi/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What does a corporate travel agent do?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A corporate travel agent books and manages business travel for your company: flights, hotels, transfers, visas and trip changes, with one point of contact, negotiated rates and itemised invoicing."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why choose Spice Travel as your travel agent in Nairobi?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "We are IATA certified, have served Nairobi since 1994, are rated 5 on Google and have managed groups of more than 100 travellers. One team handles flights, hotels, transfers, visas and insurance."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What group sizes do you handle?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "From a single business traveller to groups of 100+. Our largest coordinated event had more than 100 attendees, including group flights, hotel blocks and transfers."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do you offer team building and corporate retreat packages in Kenya?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. We organise team building and corporate retreats at safari lodges, bush resorts and coastal hotels, including transport, meals and activities. See the retreat packages above for starting prices."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can you book flights on any airline?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. We book domestic and international flights through Amadeus and Travelport systems, including group and last-minute bookings."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How fast will I get a quote?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A consultant calls you back and sends a written quote the same day on working days. Office hours are Mon\u2013Fri 8:30am\u20135:30pm and Sat 8:30am\u20131pm."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can you invoice our company?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. We prepare itemised corporate invoices. If your team travels often, ask about an ongoing business travel arrangement during the call."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do you handle conferences, NGOs and international delegations?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, inbound and outbound: group flights, visa assistance, hotel blocks, ground transfers and arrival logistics for conference delegates and project teams."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do you also sell holiday and safari packages?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. We offer Kenya safari packages, beach holidays and international trips for individuals, families and groups. Prices on this page are indicative starting prices per person sharing."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can you arrange car hire, transfers and travel insurance?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. We add airport transfers, car hire and travel insurance to the same quote, so everything is booked and invoiced together."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -64,7 +301,7 @@
 
 /* hero */
 .sl .hero{position:relative;color:#fff;background:#0d1f3c;isolation:isolate;overflow:hidden}
-.sl .hero-bg{position:absolute;inset:0;z-index:-2;background:url('assets/hero-tented-suite.webp') center/cover no-repeat;animation:slKen 24s ease-in-out infinite alternate}
+.sl .hero-bg{position:absolute;inset:0;z-index:-2;background:none center/cover no-repeat;animation:slKen 24s ease-in-out infinite alternate}
 @keyframes slKen{from{transform:scale(1)}to{transform:scale(1.12)}}
 .sl .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(9,22,40,.95) 0%,rgba(13,31,60,.85) 50%,rgba(13,31,60,.6) 100%);z-index:-1}
 .sl .hero .w{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding-top:50px;padding-bottom:58px}
@@ -224,7 +461,7 @@
 .sl .of .btn{margin-top:auto;padding:12px 16px;font-size:14.5px;width:100%}
 
 /* cinematic parallax band */
-.sl .cine{position:relative;color:#fff;text-align:center;padding:120px 0;background:#3a2410 url('assets/sunrise-balloons.webp') center/cover fixed no-repeat;isolation:isolate}
+.sl .cine{position:relative;color:#fff;text-align:center;padding:120px 0;background:#3a2410 none center/cover fixed no-repeat;isolation:isolate}
 .sl .cine::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(9,22,40,.55),rgba(9,22,40,.7));z-index:-1}
 .sl .cine h2{color:#fff;font-size:clamp(28px,4.4vw,50px);max-width:820px;margin:0 auto 14px}
 .sl .cine p{font-size:19px;font-weight:300;max-width:620px;margin:0 auto 26px;opacity:.95}
@@ -344,7 +581,8 @@
 .sl .hero-bg{background:none;animation:none}
 .sl .hs{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:slShow 18s infinite}
 @keyframes slShow{0%{opacity:0;transform:scale(1)}6%{opacity:1}35%{opacity:1}42%{opacity:0;transform:scale(1.1)}100%{opacity:0;transform:scale(1.1)}}
-.sl .cine{background-image:url('assets/sunrise-balloons.webp')}
+.sl .cine{background:#3a2410}
+.sl .cine-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
 .sl .need .tg{display:inline-block;align-self:flex-start;background:var(--am);color:#1b1200;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:50px;padding:2px 9px}
 .sl .needs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .sl .need{font:500 15px 'Outfit',sans-serif;text-align:left;color:var(--ink);background:#fff;border:1.5px solid #c9d5e6;border-radius:14px;padding:14px;cursor:pointer;transition:border-color .15s,background .15s,transform .15s;display:flex;flex-direction:column;gap:4px;min-height:96px}
@@ -819,7 +1057,7 @@
 </div></section>
 
 <!-- CINEMATIC BAND -->
-<section class="cine"><div class="w">
+<section class="cine"><img class="cine-bg skip-lazy" data-no-lazy="1" data-skip-lazy="" src="assets/sunrise-balloons.webp" alt="" width="1400" height="787"><div class="w">
   <span class="eyebrow">Corporate retreats and holidays in Kenya</span>
   <h2>Give your team, or your family, a sunrise they will talk about all year</h2>
   <p>Balloon safaris over the Mara, bush dinners and quiet lodges. We plan the whole trip, you enjoy it.</p>
