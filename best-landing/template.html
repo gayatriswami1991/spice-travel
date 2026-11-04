@@ -100,6 +100,39 @@
 @media(max-width:760px){.sl .benefit{grid-template-columns:1fr}.sl .gal{grid-auto-rows:170px}}
 @media(max-width:520px){.sl .needs,.sl .row2f{grid-template-columns:1fr}.sl .gal{grid-template-columns:1fr}.sl .gal figure{grid-column:auto!important;grid-row:auto!important}}
 @media(prefers-reduced-motion:reduce){.sl .hs{animation:none}.sl .hs:first-child{opacity:1}}
+/* clearer banner photos */
+.sl .hero::before{background:linear-gradient(100deg,rgba(9,22,40,.8) 0%,rgba(13,31,60,.5) 46%,rgba(13,31,60,.08) 100%)}
+.sl .hero h1,.sl .hero .lead,.sl .hero .ticks,.sl .hero .proof{text-shadow:0 2px 14px rgba(0,0,0,.45)}
+.sl .cine::before{background:linear-gradient(rgba(9,22,40,.3),rgba(9,22,40,.5))}
+.sl .cine h2,.sl .cine p{text-shadow:0 2px 16px rgba(0,0,0,.5)}
+/* package categories */
+.sl .cb{margin-bottom:44px}
+.sl .cb-h{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.sl .cb-ic{width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,var(--b),var(--n));display:grid;place-items:center;flex:none}
+.sl .cb-ic svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sl .cb-t{flex:1;min-width:200px}
+.sl .cb-t h3{font-size:24px}
+.sl .cb-t p{color:var(--mu);font-size:15px;margin-top:2px}
+.sl .cb-chip{background:#fff4dc;border:1px solid #f0d9a4;color:#6b4a00;border-radius:50px;padding:6px 14px;font-size:13px;font-weight:600;white-space:nowrap}
+.sl .cb-nav{display:flex;gap:8px}
+.sl .cb-nav button{width:38px;height:38px;border-radius:50%;border:1.5px solid #c9d5e6;background:#fff;color:var(--b);font-size:22px;line-height:1;cursor:pointer;display:grid;place-items:center;transition:background .15s,color .15s}
+.sl .cb-nav button:hover{background:var(--b);color:#fff}
+.sl .cb-row{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:4px 2px 14px}
+.sl .cb-row::-webkit-scrollbar{display:none}
+.sl .cb-row .pc{flex:0 0 calc((100% - 54px)/4);scroll-snap-align:start;min-width:240px}
+.sl .pc .pb{position:absolute;right:12px;bottom:12px;background:var(--am);color:#1b1200;font-weight:700;font-size:13px;border-radius:50px;padding:5px 12px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.sl .pc .ph{overflow:hidden}
+.sl .pc .bd .dur{font-weight:500;color:var(--b)}
+.sl .pc .bd ul{min-height:46px}
+.sl .pc .bd h3{min-height:48px;display:flex;align-items:center}
+.sl .pc.cta{background:linear-gradient(160deg,#0d1f3c,#0c71c3);color:#fff;justify-content:center;text-align:center;padding:26px 20px}
+.sl .pc.cta h3{color:#fff;font-size:22px;margin-bottom:8px}
+.sl .pc.cta p{opacity:.92;font-size:15px;margin-bottom:16px}
+.sl .pc.cta .btn{width:100%}
+.sl .pc.cta .ic2{width:54px;height:54px;border-radius:50%;background:rgba(245,166,35,.2);display:grid;place-items:center;margin:0 auto 14px}
+.sl .pc.cta .ic2 svg{width:28px;height:28px;stroke:var(--am);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:1020px){.sl .cb-row .pc{flex-basis:calc((100% - 18px)/2.3)}}
+@media(max-width:560px){.sl .cb-row .pc{flex-basis:78%}.sl .cb-nav{display:none}}
 </style>
 
 <div class="sl" id="sl-top">
@@ -117,8 +150,8 @@
       <span class="badge">IATA Certified &middot; Nairobi since 1994</span>
       <span class="live" id="sl-live" hidden><i></i><span></span></span>
     </div>
-    <h1 id="sl-h1">Best Corporate Travel Management in <span class="hl">Nairobi</span></h1>
-    <p class="lead" id="sl-lead">Your IATA-certified corporate travel agent in Nairobi: business flights, hotels, conferences, team retreats and holiday packages. Get your free quote and a call back the same day.</p>
+    <h1 id="sl-h1">Best Corporate Travel Agent in <span class="hl">Nairobi</span></h1>
+    <p class="lead" id="sl-lead">Corporate travel management, flight booking and holiday packages with one IATA-certified travel agent in Nairobi. Get your free quote and a call back the same day.</p>
     <ul class="ticks">
       <li><b>Corporate travel management:</b> flights, hotels, conferences and retreats</li>
       <li><b>Flight booking agent:</b> any airline, domestic and international</li>
@@ -410,25 +443,18 @@
   </div>
 </div></div></section>
 
-<!-- HOLIDAY PACKAGES (all) -->
+<!-- HOLIDAY PACKAGES (by category) -->
 <section class="sec alt" id="sl-packages"><div class="w">
   <div class="head"><span class="eyebrow">Holiday packages</span>
     <h2>Holiday and Safari Packages from Nairobi</h2>
-    <p>Kenya safaris, beach holidays and trips abroad. Prices are per person sharing. We adjust dates, nights and room types.</p></div>
-  <div class="tabs" role="tablist">
-    <button type="button" class="tab on" data-f="all">All packages</button>
-    <button type="button" class="tab" data-f="kenya">Kenya safari</button>
-    <button type="button" class="tab" data-f="beach">Beach holidays</button>
-    <button type="button" class="tab" data-f="intl">International</button>
-  </div>
-  <div class="pk">
-@@CARDS@@
-  </div>
+    <p>Four kinds of trips, one team. Prices are per person sharing, and we adjust dates, nights and room types.</p></div>
+@@CATEGORIES@@
   <!-- TODO before launch: confirm every price, inclusion and date (taken from Instagram posters).
        Mauritius and Seychelles posters said "valid till 30 Sep", so no price is shown for them.
        JW Marriott: posters showed KES 68,000 (sharing, self-drive) and KES 71,000 (per person per day, residents' rate): confirm.
        Ritz-Carlton: posters showed USD 1,950 / 2,450 and "from USD 2,500 per person per night, stay 3 pay 2": confirm.
-       Christmas in Dubai: confirm 2026 departure dates. -->
+       Christmas in Dubai: confirm 2026 departure dates.
+       Photos for Soroi Amboseli, JW Marriott, Suyian and Ritz-Carlton were matched by guess: confirm. -->
   <p class="note">* Indicative rates per person sharing, subject to season and availability. Final pricing is confirmed in your written quote. More on our <a href="/holiday-packages/">holiday packages</a> page.</p>
 </div></section>
 
@@ -612,7 +638,7 @@
 
   /* ---------- ad intent from the URL (?s=agent | flights | packages | corporate) ---------- */
   var TEXT = {
-    corporate: { a: 'Best Corporate Travel Management in ', b: 'Nairobi', lead: 'Your IATA-certified corporate travel agent in Nairobi: business flights, hotels, conferences, team retreats and holiday packages. Get your free quote and a call back the same day.' },
+    corporate: { a: 'Best Corporate Travel Agent in ', b: 'Nairobi', lead: 'Corporate travel management, flight booking and holiday packages with one IATA-certified travel agent in Nairobi. Get your free quote and a call back the same day.' },
     agent:     { a: 'Best Travel Agent in ', b: 'Nairobi', lead: 'IATA-certified since 1994 and rated 5 on Google. Flights, holiday packages, safaris, visas and corporate travel, all with one trusted Nairobi travel agency. Get your free quote today.' },
     flights:   { a: 'Flight Booking Agent in ', b: 'Nairobi', lead: 'Domestic and international flights on any airline, ticketed fast by an IATA-certified agency. For individuals, families and corporate travellers. Get your free flight quote today.' },
     packages:  { a: 'Holiday Packages from ', b: 'Nairobi', lead: 'Safari, beach and international holiday packages from KES 33,500 per person. We sort flights, hotels, transfers and visas. Request a call back and get your free holiday quote today.' }
@@ -670,7 +696,7 @@
   if (hasIO) {
     if (!reduce) {
       root.className = root.className + ' sl-js';
-      var targets = qa('.head,.benefit .bx,.who div,.steps .st,.of,.tsum,.tw,.seo,.links,.qband .w > div,.after,.two > div,.svc .it,.gal figure,.pain');
+      var targets = qa('.head,.benefit .bx,.who div,.steps .st,.of,.tsum,.tw,.seo,.links,.qband .w > div,.after,.two > div,.svc .it,.gal figure,.pain,.cb-h,.cb-row .pc');
       targets.forEach(function (el) {
         el.className = el.className + ' rv-in';
         var idx = Array.prototype.indexOf.call(el.parentNode.children, el);
@@ -689,18 +715,15 @@
     }
   }
 
-  /* ---------- package tabs ---------- */
-  qa('.tab').forEach(function (t) {
-    t.addEventListener('click', function () {
-      var f = t.getAttribute('data-f');
-      qa('.tab').forEach(function (x) { if (x === t) { x.classList.add('on'); } else { x.classList.remove('on'); } });
-      qa('#sl-packages .pc').forEach(function (c) {
-        var cats = (c.getAttribute('data-cat') || '').split(' ');
-        var show = (f === 'all') ? true : (cats.indexOf(f) > -1);
-        if (show) { c.classList.remove('off'); } else { c.classList.add('off'); }
-      });
-      track('tab_click', { tab: f });
-    });
+  /* ---------- package category rows (arrows) ---------- */
+  qa('.cb').forEach(function (blk) {
+    var row = blk.querySelector('.cb-row');
+    var pv = blk.querySelector('.cb-prev');
+    var nx = blk.querySelector('.cb-next');
+    if (!row) { return; }
+    function by(dir) { row.scrollBy({ left: dir * row.clientWidth * 0.8, behavior: 'smooth' }); }
+    if (pv) { pv.addEventListener('click', function () { by(-1); }); }
+    if (nx) { nx.addEventListener('click', function () { by(1); }); }
   });
 
   /* ---------- step form ---------- */

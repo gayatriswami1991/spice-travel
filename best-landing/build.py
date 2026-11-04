@@ -8,50 +8,71 @@ d = pathlib.Path(__file__).parent
 corp = (d.parent / 'corporate-landing' / 'divi-snippet.html').read_text()
 css = re.search(r'<style>\n(.*?)\n</style>', corp, re.S).group(1)
 
-ICON_TENT = '<svg viewBox="0 0 24 24"><path d="M3 20L12 4l9 16z"/><path d="M12 4v16M9 20l3-5 3 5"/></svg>'
+ICON_SAFARI = '<svg viewBox="0 0 24 24"><path d="M3 20L12 4l9 16z"/><path d="M12 4v16M9 20l3-5 3 5"/></svg>'
 ICON_STAR = '<svg viewBox="0 0 24 24"><path d="M12 3l2.600 5.600 6 .8-4.400 4.200 1.100 6L12 16.800 6.700 19.600l1.100-6L3.400 9.400l6-.8z"/></svg>'
+ICON_SUN = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>'
+ICON_GLOBE = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>'
+ICON_MSG = '<svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg>'
 
-CARDS = [
- dict(cat='kenya', img='taita-hills', alt='Pool and gardens at Taita Hills Safari Resort', badge='Safari', title='Taita Hills Safari Resort', dur='3 days, 2 nights &middot; Taita Hills Sanctuary', bl=['SGR 1st class travel','Pool, gardens and game viewing'], price='KES 40,950', unit='per person sharing', pkg='Taita Hills Safari Resort'),
- dict(cat='kenya', img=None, icon=ICON_TENT, region='Amboseli', badge='Safari', title='Soroi Amboseli', dur='Full board, Amboseli', bl=['3 meals daily, soft drinks, local beers, selected spirits and house wines','Wifi and minibar'], ex='Excludes park fees, transport, game drives and excursions.', price='KES 33,500', unit='from, per person sharing', pkg='Soroi Amboseli'),
- dict(cat='kenya', img='kitirua-lodge', alt='Thatched lodge lounge with woven lamps at Kitirua Plains Lodge', badge='Safari', title='Kitirua Plains Lodge', dur='Amboseli National Park', bl=['Authentic Maasai cultural experiences','Cultural visits and storytelling'], price='USD 350', unit='per person sharing', pkg='Kitirua Plains Lodge, Amboseli'),
- dict(cat='kenya', img='loisaba-lodo-springs', alt='Tented suite with valley views at Loisaba Lodo Springs', badge='Luxury', title='Loisaba Lodo Springs', dur='3 days, 2 nights &middot; Laikipia', bl=['All meals included','Self-drive, conservancy fees extra'], price='KES 99,000', unit='per person sharing', pkg='Loisaba Lodo Springs'),
- dict(cat='kenya', img='elsas-kopje-meru', alt="Sunset dinner deck at Elsa's Kopje, Meru", badge='Luxury', title="Elsa's Kopje, Meru", dur='3 days, 2 nights &middot; Meru National Park', bl=['All meals included','Self-drive, conservancy fees extra'], price='KES 106,000', unit='per person sharing', pkg="Elsa's Kopje, Meru"),
- dict(cat='kenya', img=None, icon=ICON_STAR, region='Mount Kenya', badge='Luxury', title='JW Marriott Mount Kenya Rhino Reserve Safari Camp', dur='Full board, self-drive', bl=['Luxury tented suite in a private rhino reserve','Opening offer, residents\' rate'], ex='Also listed: KES 71,000 per person per day, full board incl. alcohol, with morning and evening game drives and a private guide.', price='KES 68,000', unit='per person sharing', pkg='JW Marriott Mount Kenya Rhino Reserve Safari Camp'),
- dict(cat='kenya', img=None, icon=ICON_STAR, region='Laikipia', badge='Luxury', title='Suyian Lodge, Laikipia', dur='Private conservancy', bl=['Self-drive','Luxury safari retreat away from the crowds'], price='USD 1,300', unit='per person sharing', pkg='Suyian Lodge, Laikipia'),
- dict(cat='kenya', img=None, icon=ICON_STAR, region='Maasai Mara', badge='Luxury', title='The Ritz-Carlton, Masai Mara', dur='5-star safari camp', bl=['Stay 3 nights, pay for 2','Self-drive USD 1,950 or flying package USD 2,450'], price='USD 1,950', unit='self-drive, per person sharing', pkg='The Ritz-Carlton, Masai Mara'),
- dict(cat='beach', img='sarova-whitesands', alt='Pool at Sarova Whitesands Beach Resort, Mombasa', badge='Beach', title='Sarova Whitesands, Mombasa', dur='3 days, 2 nights &middot; Half board', bl=['Return tickets to Mombasa','Airport transfers (sharing)'], price='KES 50,600', unit='per person sharing', pkg='Sarova Whitesands, Mombasa'),
- dict(cat='intl', img='dubai', alt='Burj Al Arab in Dubai at sunset', badge='Dubai', title='Christmas in Dubai', dur='5 nights &middot; 4-star hotel', bl=['Daily breakfast, return airport transfers','Burj Khalifa, dhow cruise dinner, desert safari','Visa processing included'], price='USD 1,539', unit='per person, double sharing', pkg='Christmas in Dubai (5 nights)'),
- dict(cat='beach intl', img='zanzibar', alt='Resort pool and palm trees in Zanzibar', badge='Zanzibar', title='Zanzibar, Lux* Marijani', dur='5 days, 4 nights', bl=['Return flights and airport transfers','All inclusive'], price='USD 2,535', unit='from, per person', pkg='Zanzibar, Lux* Marijani (5 days 4 nights)'),
- dict(cat='intl', img='turkey', alt='Istanbul rooftops and old town in northern Turkey', badge='Turkey', title='Northern Turkey', dur='8 days, 7 nights', bl=['4 to 5 star resorts','Daily meals, flights and transfers'], price='USD 895', unit='from, per person', pkg='Northern Turkey (8 days 7 nights)'),
- dict(cat='beach intl', img='mauritius', alt='Mauritius mountains, palms and pool', badge='Mauritius', title='Mauritius', dur='4 nights &middot; 4-star hotel', bl=['Airport transfers and return flights','Daily dinner and breakfast','North tour, south tour and Ile aux Cerfs'], price=None, unit="Ask for today's rate", pkg='Mauritius tour'),
- dict(cat='beach intl', img='seychelles', alt='Seychelles island resorts and beaches', badge='Seychelles', title='Seychelles', dur='5 nights, 6 days', bl=['Island resorts and beaches','Love-at-first-sight escape'], price=None, unit="Ask for today's rate", pkg='Seychelles (5 nights 6 days)'),
+# every card: title, one location line, exactly two short bullets, one price
+CARDS = {
+ 'taita':    dict(img='taita-hills', alt='Pool and gardens at Taita Hills Safari Resort', title='Taita Hills Safari Resort', dur='3 days, 2 nights &middot; Taita Hills', bl=['SGR 1st class travel','Pool, gardens and game viewing'], price='KES 40,950', unit='per person sharing', pkg='Taita Hills Safari Resort'),
+ 'soroi':    dict(img='soroi-amboseli', alt='Infinity pool and deck at a safari lodge in Amboseli', title='Soroi Amboseli', dur='Full board &middot; Amboseli', bl=['Meals, drinks, wifi and minibar','Park fees and game drives extra'], price='KES 33,500', unit='from, per person sharing', pkg='Soroi Amboseli'),
+ 'kitirua':  dict(img='kitirua-lodge', alt='Thatched lodge lounge with woven lamps at Kitirua Plains Lodge', title='Kitirua Plains Lodge', dur='Amboseli National Park', bl=['Authentic Maasai cultural experiences','Cultural visits and storytelling'], price='USD 350', unit='per person sharing', pkg='Kitirua Plains Lodge, Amboseli'),
+ 'loisaba':  dict(img='loisaba-lodo-springs', alt='Tented suite with valley views at Loisaba Lodo Springs', title='Loisaba Lodo Springs', dur='3 days, 2 nights &middot; Laikipia', bl=['All meals included','Self-drive, conservancy fees extra'], price='KES 99,000', unit='per person sharing', pkg='Loisaba Lodo Springs'),
+ 'elsas':    dict(img='elsas-kopje-meru', alt="Sunset dinner deck at Elsa's Kopje, Meru", title="Elsa's Kopje, Meru", dur='3 days, 2 nights &middot; Meru', bl=['All meals included','Self-drive, conservancy fees extra'], price='KES 106,000', unit='per person sharing', pkg="Elsa's Kopje, Meru"),
+ 'suyian':   dict(img='suyian-lodge', alt='Suyian Lodge terraces and fire pit at sunset in Laikipia', title='Suyian Lodge', dur='Private conservancy &middot; Laikipia', bl=['Luxury safari away from the crowds','Self-drive'], price='USD 1,300', unit='per person sharing', pkg='Suyian Lodge, Laikipia'),
+ 'jw':       dict(img='jw-rhino-camp', alt='Safari camp pool and tented lounge at Mount Kenya Rhino Reserve', title='JW Marriott Rhino Reserve', dur='Mount Kenya &middot; Full board', bl=['Luxury tented suite','Self-drive, residents\' rate'], price='KES 68,000', unit='per person sharing', pkg='JW Marriott Mount Kenya Rhino Reserve Safari Camp'),
+ 'ritz':     dict(img='ritz-mara', alt='Pool deck at sunset beside the Mara river at The Ritz-Carlton Masai Mara', title='The Ritz-Carlton, Masai Mara', dur='5-star camp &middot; Maasai Mara', bl=['Stay 3 nights, pay for 2','Self-drive or flying package'], price='USD 1,950', unit='self-drive, per person sharing', pkg='The Ritz-Carlton, Masai Mara'),
+ 'sarova':   dict(img='sarova-whitesands', alt='Pool at Sarova Whitesands Beach Resort, Mombasa', title='Sarova Whitesands', dur='3 days, 2 nights &middot; Mombasa', bl=['Half board and airport transfers','Return tickets to Mombasa'], price='KES 50,600', unit='per person sharing', pkg='Sarova Whitesands, Mombasa'),
+ 'zanzibar': dict(img='zanzibar', alt='Resort pool and palm trees in Zanzibar', title='Zanzibar, Lux* Marijani', dur='5 days, 4 nights &middot; Zanzibar', bl=['All inclusive stay','Return flights and transfers'], price='USD 2,535', unit='from, per person', pkg='Zanzibar, Lux* Marijani (5 days 4 nights)'),
+ 'mauritius':dict(img='mauritius', alt='Mauritius mountains, palms and pool', title='Mauritius', dur='4 nights &middot; 4-star hotel', bl=['Flights, transfers, dinner and breakfast','North and south island tours'], price=None, unit="Ask for today's rate", pkg='Mauritius tour'),
+ 'seychelles':dict(img='seychelles', alt='Seychelles island resorts and beaches', title='Seychelles', dur='5 nights, 6 days &middot; Seychelles', bl=['Island resorts and white beaches','Stay and flights on request'], price=None, unit="Ask for today's rate", pkg='Seychelles (5 nights 6 days)'),
+ 'dubai':    dict(img='dubai', alt='Burj Al Arab in Dubai at sunset', title='Christmas in Dubai', dur='5 nights &middot; 4-star hotel', bl=['Burj Khalifa, dhow dinner, desert safari','Visa processing included'], price='USD 1,539', unit='per person, double sharing', pkg='Christmas in Dubai (5 nights)'),
+ 'turkey':   dict(img='turkey', alt='Istanbul rooftops and old town in northern Turkey', title='Northern Turkey', dur='8 days, 7 nights &middot; Turkey', bl=['4 to 5 star resorts, daily meals','Flights and transfers included'], price='USD 895', unit='from, per person', pkg='Northern Turkey (8 days 7 nights)'),
+}
+CATS = [
+ dict(icon=ICON_SAFARI, title='Safari Getaways', tag="Short escapes into Kenya's wild", chip='From KES 33,500', items=['taita','soroi','kitirua'], cta=True),
+ dict(icon=ICON_STAR, title='Luxury Safari Lodges', tag='Private conservancies and five-star camps', chip='From KES 68,000', items=['loisaba','elsas','suyian','jw','ritz'], cta=False),
+ dict(icon=ICON_SUN, title='Beach and Island Escapes', tag='Mombasa, Zanzibar, Mauritius and Seychelles', chip='From KES 50,600', items=['sarova','zanzibar','mauritius','seychelles'], cta=False),
+ dict(icon=ICON_GLOBE, title='International City Breaks', tag='Dubai and Turkey, with visa help', chip='From USD 895', items=['dubai','turkey'], cta=True),
 ]
-RETREAT = ['Taita Hills Safari Resort', 'Sarova Whitesands, Mombasa', 'Loisaba Lodo Springs', "Elsa's Kopje, Meru"]
+RETREAT = ['taita', 'sarova', 'loisaba', 'elsas']
 
 def card(c, retreat=False):
-    if c['img']:
-        ph = '<div class="ph"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/%s.webp" alt="%s" width="900" height="675"><span class="cat">%s</span></div>' % (c['img'], c['alt'], c['badge'])
-    else:
-        ph = '<div class="ph np">%s<span class="l">%s</span><span class="cat">%s</span></div>' % (c['icon'], c['region'], c['badge'])
+    badge = ('<span class="pb">%s</span>' % c['price']) if c['price'] else '<span class="pb">Ask rate</span>'
+    ph = ('<div class="ph"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/%s.webp" alt="%s" width="800" height="600">%s</div>'
+          % (c['img'], c['alt'], badge))
     bl = ''.join('<li>%s</li>' % b for b in c['bl'])
-    ex = '<p class="ex">%s</p>' % c['ex'] if c.get('ex') else ''
     if c['price']:
         pr = '<div class="pr">From<b>%s</b>%s</div>' % (c['price'], c['unit'])
     else:
         pr = '<div class="pr"><b class="ask">%s</b>Final price in your quote</div>' % c['unit']
     need = ' data-need="corporate"' if retreat else ''
     lab = 'Get a group quote' if retreat else 'Get a quote'
-    return ('    <article class="pc" data-cat="%s">%s<div class="bd"><h3>%s</h3><div class="dur">%s</div><ul>%s</ul>%s%s'
+    return ('      <article class="pc">%s<div class="bd"><h3>%s</h3><div class="dur">%s</div><ul>%s</ul>%s'
             '<button type="button" class="btn btn-ol sl-pick"%s data-pkg="%s">%s</button></div></article>'
-            % (c['cat'], ph, c['title'], c['dur'], bl, ex, pr, need, c['pkg'], lab))
+            % (ph, c['title'], c['dur'], bl, pr, need, c['pkg'], lab))
+
+def cta_card():
+    return ('      <article class="pc cta"><span class="ic2">%s</span><h3>Not sure which one?</h3>'
+            '<p>Tell us your dates and budget. We suggest the best fit.</p>'
+            '<button type="button" class="btn btn-am sl-need" data-need="packages">Request a call back</button></article>' % ICON_MSG)
+
+def category(cat):
+    cards = [card(CARDS[k]) for k in cat['items']]
+    if cat['cta']:
+        cards.append(cta_card())
+    return ('  <div class="cb"><div class="cb-h"><span class="cb-ic">%s</span><div class="cb-t"><h3>%s</h3><p>%s</p></div>'
+            '<span class="cb-chip">%s</span><div class="cb-nav"><button type="button" class="cb-prev" aria-label="Previous">&lsaquo;</button><button type="button" class="cb-next" aria-label="Next">&rsaquo;</button></div></div>'
+            '<div class="cb-row">\n%s\n    </div></div>' % (cat['icon'], cat['title'], cat['tag'], cat['chip'], '\n'.join(cards)))
 
 tpl = (d / 'template.html').read_text()
 # drop the unused decorative group in the team illustration
 tpl = re.sub(r'\n\s*<g class="pf" fill="#ffffff" opacity="\.85"><path d="M610 120[^\n]*</g>', '', tpl)
 snip = (tpl.replace('@@CSS@@', css)
-           .replace('@@CARDS@@', '\n'.join(card(c) for c in CARDS))
-           .replace('@@RETREATCARDS@@', '\n'.join(card(c, True) for c in CARDS if c['pkg'] in RETREAT)))
+           .replace('@@CATEGORIES@@', '\n'.join(category(c) for c in CATS))
+           .replace('@@RETREATCARDS@@', '\n'.join(card(CARDS[k], True) for k in RETREAT)))
 (d / 'divi-snippet.html').write_text(snip)
 
 def embed(text):
