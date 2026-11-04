@@ -110,7 +110,6 @@
 @media(max-width:520px){.sl .needs,.sl .row2f{grid-template-columns:1fr}.sl .gal{grid-template-columns:1fr}.sl .gal figure{grid-column:auto!important;grid-row:auto!important}}
 @media(prefers-reduced-motion:reduce){.sl .hs{animation:none}.sl .hs:first-child{opacity:1}}
 /* festive section */
-.sl .badge.fest{background:linear-gradient(135deg,#c0392b,#e0951a);border-color:rgba(255,255,255,.4);font-weight:600}
 .sl .fx{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .sl .fc{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 26px rgba(13,31,60,.1);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
 .sl .fc:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(13,31,60,.18)}
@@ -178,7 +177,6 @@
     <div class="pills">
       <span class="badge">IATA Certified &middot; Nairobi since 1994</span>
       <span class="live" id="sl-live" hidden><i></i><span></span></span>
-      <span class="badge fest" id="sl-fest" hidden></span>
     </div>
     <h1 id="sl-h1">Best Corporate Travel Agent in <span class="hl">Nairobi</span></h1>
     <p class="lead" id="sl-lead">Corporate travel management, flight booking and holiday packages with one IATA-certified travel agent in Nairobi. Get your free quote and a call back the same day.</p>
@@ -1138,14 +1136,10 @@
   updFloat();
   updProg();
 
-  /* ---------- festive season: countdown pill, auto-hide after 10 Jan 2027 ---------- */
+  /* ---------- festive season: auto-hide after 10 Jan 2027 ---------- */
   (function festive() {
     var now = Date.now();
-    var DAY = 86400000;
-    var xmas = new Date('2026-12-25T00:00:00+03:00').getTime();
-    var ny = new Date('2027-01-01T00:00:00+03:00').getTime();
     var end = new Date('2027-01-10T23:59:59+03:00').getTime();
-    var pill = q('#sl-fest');
     var rib = q('#sl-ribbon');
     var sec = q('#sl-festive');
     if (now > end) {
@@ -1153,11 +1147,6 @@
       if (rib) { rib.textContent = rib.getAttribute('data-generic'); }
       return;
     }
-    var txt = '';
-    if (now < xmas) { txt = Math.ceil((xmas - now) / DAY) + ' days to Christmas: book your holiday now'; }
-    else if (now < ny) { txt = 'New Year is here: last-minute trips on request'; }
-    else { txt = 'New Year trips: ask for the latest availability'; }
-    if (pill) { pill.textContent = txt; pill.hidden = false; }
   })();
 
   /* ---------- offer countdown (hides an offer after its end date) ---------- */
