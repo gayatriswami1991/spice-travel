@@ -1,0 +1,772 @@
+<!--
+  SPICE TRAVEL: HOLIDAY PACKAGES AD LANDING PAGE (Divi snippet)
+
+  HOW TO USE
+  1. WordPress > Pages > Add New. Slug: holiday-packages-from-nairobi
+  2. Divi Builder > Fullwidth section > "Fullwidth Code" module > paste this WHOLE file.
+     (Use divi-snippet-with-images.html if you do not want to upload images: they are embedded in it.)
+  3. If you use this lightweight file: upload /assets to Media Library, then Find/Replace "assets/" with your uploads URL.
+  4. Yoast: set the page to noindex (ad page). The site's global header and footer stay as they are.
+
+  FORMS: no new form is created. The step form and the quick call-back forms fill and submit your EXISTING
+  Contact Form 7 form (id 1438) through the hidden shortcode at the bottom. Leads land in the same inbox.
+  After the first test, check that the mail contains Name, Email, Phone, Service and Message.
+
+  EMAIL: holiday customers often skip email. CF7 form 1438 requires one, so when the visitor leaves it empty the
+  script fills QUICK_EMAIL (below). Either keep that placeholder, or make Email optional in form 1438 and set
+  QUICK_EMAIL to ''.
+
+  NOTE: JS/CSS below intentionally contain no ampersand characters (WordPress rewrites bare "&").
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+@@CSS@@
+
+/* ---- packages page additions ---- */
+.sl .hero-bg{background-image:url('assets/sunrise-balloons.webp')}
+.sl .cine{background-image:url('assets/hero-tented-suite.webp')}
+.sl .tabs{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:28px}
+.sl .tab{font:600 15px 'Outfit',sans-serif;padding:11px 22px;border-radius:50px;border:1.5px solid #c9d5e6;background:#fff;color:var(--n);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.sl .tab:hover{border-color:var(--b);color:var(--b)}
+.sl .tab.on{background:var(--b);border-color:var(--b);color:#fff}
+.sl .pk .pc.off{display:none}
+.sl .pc .ph{position:relative}
+.sl .pc .ph .cat{position:absolute;left:12px;top:12px;background:rgba(13,31,60,.82);color:#fff;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:50px;padding:5px 12px}
+.sl .pc .ph.np{aspect-ratio:4/3;background:linear-gradient(135deg,#0d1f3c,#0c71c3);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:18px;overflow:hidden}
+.sl .pc .ph.np::after{content:"";position:absolute;right:-50px;bottom:-50px;width:160px;height:160px;border-radius:50%;background:rgba(245,166,35,.18)}
+.sl .pc .ph.np svg{width:44px;height:44px;stroke:#f5a623;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-bottom:10px}
+.sl .pc .ph.np span.l{font-size:15px;font-weight:500;letter-spacing:.04em;opacity:.95}
+.sl .pc .ex{font-size:12.5px;color:var(--mu);margin:-6px 0 12px}
+.sl .pr b.ask{font-size:18px}
+.sl .benefit{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.sl .benefit .bx{background:#fff;border:1px solid var(--ln);border-radius:14px;padding:22px}
+.sl .benefit h3{font-size:18px;margin-bottom:6px}
+.sl .benefit p{font-size:15px;color:var(--mu)}
+.sl .xs{text-align:center;margin-top:26px;font-size:16px;color:var(--mu)}
+.sl .xs a{color:var(--b);text-decoration:underline;font-weight:600}
+@media(max-width:760px){.sl .benefit{grid-template-columns:1fr}}
+</style>
+
+<div class="sl" id="sl-top">
+<div class="prog-top" id="sl-prog"><i></i></div>
+
+<!-- HERO -->
+<section class="hero"><div class="hero-bg"></div><div class="w">
+  <div>
+    <div class="pills">
+      <span class="badge">IATA Certified &middot; Nairobi since 1994</span>
+      <span class="live" id="sl-live" hidden><i></i><span></span></span>
+    </div>
+    <h1>Holiday Packages from <span class="hl">Nairobi</span></h1>
+    <p class="lead">Safari, beach and international holiday packages from KES 33,500 per person. We sort your flights, hotels, transfers and visas. Request a call back and get your free holiday quote today.</p>
+    <ul class="ticks">
+      <li><b>Kenya safaris, beach holidays and trips abroad</b> in one place</li>
+      <li><b>One IATA-certified team</b> for flights, hotels, transfers and visa help</li>
+      <li><b>Free, no-obligation quote</b> with options for your budget</li>
+    </ul>
+    <p class="proof">&#9733;&#9733;&#9733;&#9733;&#9733; Rated 5 on Google &middot; 30+ years in Nairobi &middot; Packages from KES 33,500</p>
+  </div>
+
+  <!-- STEP FORM -->
+  <div class="card" id="sl-form">
+    <div id="sl-flow">
+      <h2>Get Your Free Holiday Quote</h2>
+      <p class="sub">Answer 3 quick questions and we will call you back. No obligation.</p>
+      <div class="prog"><div class="bar"><i></i></div><span class="stepno">Step 1 of 3</span></div>
+      <div class="errbox" id="sl-errbox"></div>
+
+      <div class="sl-step" data-step="1">
+        <p class="q">What kind of holiday do you want?</p>
+        <div class="opts" id="g-need">
+          <button type="button" class="opt" data-g="need" data-v="Kenya safari">Kenya safari</button>
+          <button type="button" class="opt" data-g="need" data-v="Beach holiday">Beach holiday</button>
+          <button type="button" class="opt" data-g="need" data-v="International trip">International trip</button>
+          <button type="button" class="opt" data-g="need" data-v="Luxury Maasai Mara">Luxury Maasai Mara</button>
+          <button type="button" class="opt" data-g="need" data-v="Honeymoon or couples getaway">Honeymoon or couples getaway</button>
+          <button type="button" class="opt" data-g="need" data-v="Family or group holiday">Family or group holiday</button>
+        </div>
+        <p class="fe">Please choose one option</p>
+      </div>
+
+      <div class="sl-step" data-step="2" hidden>
+        <p class="pkgpill" id="sl-pkgpill" hidden></p>
+        <p class="q">Tell us about your trip</p>
+        <span class="lbl">Who is travelling?</span>
+        <div class="chips" id="g-size">
+          <button type="button" class="opt" data-g="size" data-v="1 traveller">Solo</button>
+          <button type="button" class="opt" data-g="size" data-v="2 travellers">2 people</button>
+          <button type="button" class="opt" data-g="size" data-v="3-5 travellers">3&ndash;5</button>
+          <button type="button" class="opt" data-g="size" data-v="6-10 travellers">6&ndash;10</button>
+          <button type="button" class="opt" data-g="size" data-v="10+ travellers">10+</button>
+        </div>
+        <p class="fe">Please choose how many are travelling</p>
+        <span class="lbl">When do you want to travel?</span>
+        <div class="chips" id="g-when">
+          <button type="button" class="opt" data-g="when" data-v="Within 1 month">Within 1 month</button>
+          <button type="button" class="opt" data-g="when" data-v="1-3 months">1&ndash;3 months</button>
+          <button type="button" class="opt" data-g="when" data-v="3-6 months">3&ndash;6 months</button>
+          <button type="button" class="opt" data-g="when" data-v="Not sure yet">Not sure yet</button>
+        </div>
+        <span class="lbl">Budget per person (optional)</span>
+        <div class="chips" id="g-budget">
+          <button type="button" class="opt" data-g="budget" data-v="Under KES 50,000">Under KES 50k</button>
+          <button type="button" class="opt" data-g="budget" data-v="KES 50,000-100,000">50k&ndash;100k</button>
+          <button type="button" class="opt" data-g="budget" data-v="KES 100,000-200,000">100k&ndash;200k</button>
+          <button type="button" class="opt" data-g="budget" data-v="KES 200,000+">200k+</button>
+          <button type="button" class="opt" data-g="budget" data-v="Not sure">Not sure</button>
+        </div>
+        <div class="nav"><button type="button" class="back" data-back="1">Back</button><button type="button" class="btn btn-bl" id="sl-next2">Continue</button></div>
+      </div>
+
+      <div class="sl-step" data-step="3" hidden>
+        <p class="q">Where should we call you?</p>
+        <div class="fld" id="f-name"><label class="lbl" for="sl-name">Your name</label>
+          <input id="sl-name" type="text" autocomplete="name" placeholder="Full name"><p class="fe">Please enter your name</p></div>
+        <div class="fld" id="f-phone"><label class="lbl" for="sl-phone">Phone number</label>
+          <input id="sl-phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+254 7xx xxx xxx"><p class="fe">Please enter a valid phone number</p></div>
+        <div class="fld" id="f-email"><label class="lbl" for="sl-email">Email (optional, we send your itinerary here)</label>
+          <input id="sl-email" type="email" autocomplete="email" placeholder="name@email.com"><p class="fe">Please enter a valid email</p></div>
+        <span class="lbl">Best time to call</span>
+        <div class="chips" id="g-time">
+          <button type="button" class="opt on" data-g="time" data-v="Anytime">Anytime</button>
+          <button type="button" class="opt" data-g="time" data-v="Morning">Morning</button>
+          <button type="button" class="opt" data-g="time" data-v="Afternoon">Afternoon</button>
+        </div>
+        <div class="nav"><button type="button" class="back" data-back="2">Back</button><button type="button" class="btn btn-am pulse" id="sl-send">Request My Call Back</button></div>
+        <p class="fine">We will call you about this request only. Mon&ndash;Fri 8:30&ndash;17:30, Sat 8:30&ndash;13:00.</p>
+      </div>
+
+      <ul class="after">
+        <li><b>1. We call you</b>A holiday consultant phones you</li>
+        <li><b>2. You get a quote</b>Written, with options and prices</li>
+        <li><b>3. You decide</b>No obligation, no pressure</li>
+      </ul>
+    </div>
+
+    <div class="thanks" id="sl-thanks" hidden>
+      <div class="tick"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a9a55" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
+      <h3>Thank you, we have your request.</h3>
+      <p>A holiday consultant will call you back shortly with your free quote. Keep your phone close.</p>
+    </div>
+  </div>
+</div></section>
+
+<div class="ribbon"><b>December and year-end holidays</b> fill up fast. Request your quote now to secure flights and rooms.</div>
+
+<!-- TRUST STRIP -->
+<div class="strip"><div class="w">
+  <div><b data-count="30" data-suf="+">30+</b><span>Years in Nairobi</span></div>
+  <div><b>IATA</b><span>Certified agency</span></div>
+  <div><b>5.0&#9733;</b><span>Google rated</span></div>
+  <div><b>KES 33,500</b><span>Packages from, per person</span></div>
+</div></div>
+
+<!-- DESTINATIONS MARQUEE -->
+<div class="mq" aria-hidden="true"><div class="mq-in">
+  <div class="mq-set"><span>Maasai Mara</span><i>&#10022;</i><span>Amboseli</span><i>&#10022;</i><span>Laikipia</span><i>&#10022;</i><span>Meru</span><i>&#10022;</i><span>Mombasa</span><i>&#10022;</i><span>Watamu</span><i>&#10022;</i><span>Zanzibar</span><i>&#10022;</i><span>Dubai</span><i>&#10022;</i><span>Mauritius</span><i>&#10022;</i><span>Seychelles</span><i>&#10022;</i><span>Turkey</span><i>&#10022;</i></div>
+  <div class="mq-set"><span>Maasai Mara</span><i>&#10022;</i><span>Amboseli</span><i>&#10022;</i><span>Laikipia</span><i>&#10022;</i><span>Meru</span><i>&#10022;</i><span>Mombasa</span><i>&#10022;</i><span>Watamu</span><i>&#10022;</i><span>Zanzibar</span><i>&#10022;</i><span>Dubai</span><i>&#10022;</i><span>Mauritius</span><i>&#10022;</i><span>Seychelles</span><i>&#10022;</i><span>Turkey</span><i>&#10022;</i></div>
+</div></div>
+
+<!-- WHY BOOK -->
+<section class="sec"><div class="w">
+  <div class="head"><span class="eyebrow">Why book with Spice Travel</span>
+    <h2>Your holiday, fully sorted by one Nairobi travel agency</h2>
+    <p>Pick the trip. We take care of everything in between.</p></div>
+  <div class="benefit">
+    <div class="bx"><h3>Flights, hotels and transfers</h3><p>One quote and one team for your whole trip, so nothing falls between bookings.</p></div>
+    <div class="bx"><h3>IATA certified since 1994</h3><p>30+ years of booking holidays for Kenyan travellers, with fast ticketing and clear confirmations.</p></div>
+    <div class="bx"><h3>Visa help for trips abroad</h3><p>We guide your <a href="/visa-assistance-in-nairobi/" style="color:var(--b);text-decoration:underline">visa application</a> and paperwork for Dubai, Europe, the UK and more.</p></div>
+    <div class="bx"><h3>Options for every budget</h3><p>Kenya lodges from KES 33,500 and trips abroad from USD 895 per person. We adjust to what you want to spend.</p></div>
+    <div class="bx"><h3>Made to fit you</h3><p>Couples, families, friends or your whole team. Change dates, nights, room types and activities.</p></div>
+    <div class="bx"><h3>A real team in Westlands</h3><p>Talk to a consultant who knows the lodges and the destinations. Call back, quote, then you decide.</p></div>
+  </div>
+</div></section>
+
+<!-- PACKAGES WITH TABS -->
+<section class="sec alt" id="sl-packages"><div class="w">
+  <div class="head"><span class="eyebrow">Our holiday packages</span>
+    <h2>Holiday Packages from Nairobi: Safari, Beach and International</h2>
+    <p>Choose a starting point. We adjust dates, nights and room types, then call you with one clear quote.</p></div>
+  <div class="tabs" role="tablist">
+    <button type="button" class="tab on" data-f="all">All packages</button>
+    <button type="button" class="tab" data-f="kenya">Kenya safari</button>
+    <button type="button" class="tab" data-f="beach">Beach holidays</button>
+    <button type="button" class="tab" data-f="intl">International</button>
+  </div>
+  <div class="pk">
+@@CARDS@@
+  </div>
+  <!-- TODO before launch: confirm every price, inclusion and date below (taken from Instagram posters).
+       Mauritius and Seychelles posters said "valid till 30 Sep", so no price is shown for them.
+       JW Marriott Rhino Reserve: two posters showed KES 68,000 and KES 71,000, confirm which is correct.
+       Christmas in Dubai: confirm 2026 departure dates. -->
+  <p class="note">* Indicative rates per person sharing, subject to season and availability. Final pricing is confirmed in your written quote. Browse more on our <a href="/holiday-packages/">holiday packages</a> page.</p>
+</div></section>
+
+<!-- QUICK CALL-BACK 1 -->
+<section class="qband"><div class="w">
+  <div><h2>Not sure where to go yet?</h2><p>Leave your name and number. A consultant will call you, ask a few questions and suggest the best option for your budget.</p></div>
+  <form class="qf" data-quick="mid" novalidate>
+    <div class="qf-row"><input name="qn" type="text" placeholder="Your name" autocomplete="name" aria-label="Your name"><input name="qp" type="tel" placeholder="Phone number" autocomplete="tel" inputmode="tel" aria-label="Phone number"><button type="submit" class="btn btn-am">Call Me Back</button></div>
+    <p class="fe">Please enter your name and a valid phone number</p>
+    <p class="fine">Free, no obligation. We call you about this request only.</p>
+    <div class="qf-ok">Thank you. We will call you shortly.</div>
+  </form>
+</div></section>
+
+<!-- LIMITED-TIME OFFERS -->
+<section class="sec" id="sl-offers"><div class="w">
+  <div class="head"><span class="eyebrow">Limited-time offers</span>
+    <h2>Maasai Mara and Coast Special Offers</h2>
+    <p>Current seasonal offers. Ask for your dates and we will quote the best option.</p></div>
+  <div class="ofs">
+    <article class="of"><span class="lab">Pay 2 Stay 3</span><h3>Sand River Maasai Mara and Elephant Pepper Camp</h3>
+      <p class="big">KES 143,100</p><p class="sm">per person sharing &middot; 1 Nov to 19 Dec 2026</p>
+      <ul><li>Return flights to Wilson Airstrip</li><li>Bush breakfast and 2 game drives daily</li><li>Bush sundowner and transfers</li></ul>
+      <p class="left" data-until="2026-12-19"></p>
+      <button type="button" class="btn btn-am sl-pick" data-pkg="Sand River Maasai Mara and Elephant Pepper Camp (Pay 2 Stay 3)">Get this offer quote</button></article>
+    <article class="of"><span class="lab">Flying package</span><h3>The Pearl Mara</h3>
+      <p class="big">From USD 1,400</p><p class="sm">for 2 nights</p>
+      <ul><li>Private suite, full board</li><li>Transfers to and from Mara airstrips</li></ul>
+      <button type="button" class="btn btn-am sl-pick" data-pkg="The Pearl Mara (Flying package)">Get this offer quote</button></article>
+    <article class="of"><span class="lab">Pay 3 Stay 4</span><h3>Hemingways Watamu</h3>
+      <p class="big">4th night free</p><p class="sm">hotel rooms and suites &middot; valid till 19 Dec 2026</p>
+      <ul><li>Beachfront stay on the coast</li><li>Rooms and suites included</li></ul>
+      <p class="left" data-until="2026-12-19"></p>
+      <button type="button" class="btn btn-am sl-pick" data-pkg="Hemingways Watamu (Pay 3 Stay 4)">Get this offer quote</button></article>
+    <article class="of"><span class="lab">Opening offer</span><h3>Surana Mara Camp</h3>
+      <p class="big">Free balloon safari</p><p class="sm">when you stay 3 nights</p>
+      <ul><li>Stay 4 nights: free return scheduled flights from Nairobi</li></ul>
+      <button type="button" class="btn btn-am sl-pick" data-pkg="Surana Mara Camp (Opening offer)">Get this offer quote</button></article>
+  </div>
+  <!-- TODO before launch: confirm every offer, rate and validity date with the team. -->
+  <p class="note">* Rates are per person sharing, subject to availability and terms.</p>
+</div></section>
+
+<!-- CINEMATIC BAND -->
+<section class="cine"><div class="w">
+  <span class="eyebrow">Safari holidays in Kenya</span>
+  <h2>Wake up to a view you will remember for years</h2>
+  <p>Tented suites, bush dinners and sunrise game drives. Tell us your dates and we plan the whole trip.</p>
+  <a class="btn btn-am sl-cta pulse" href="#sl-form">Plan My Holiday</a>
+</div></section>
+
+<!-- GALLERY -->
+<section class="sec" style="padding-bottom:0"><div class="w">
+  <div class="head" style="margin-bottom:26px"><span class="eyebrow">Experiences</span><h2>What your holiday could look like</h2></div>
+  <div class="gal">
+    <figure class="g1"><img src="assets/lodge-pool-valley.webp" alt="Safari lodge pool with valley views" loading="lazy" width="900" height="526"><figcaption>Bush lodges with big views</figcaption></figure>
+    <figure class="g2"><img src="assets/balloon-sunrise-real.webp" alt="Hot air balloons over the Maasai Mara at sunrise" loading="lazy" width="900" height="900"><figcaption>Sunrise balloon safaris</figcaption></figure>
+    <figure class="g3"><img src="assets/beach-resort-pool.webp" alt="Beachfront resort pool on the coast" loading="lazy" width="900" height="514"><figcaption>Beach holidays on the coast</figcaption></figure>
+    <figure class="g4"><img src="assets/bush-dinner-sunset.webp" alt="Sundowner dinner in the Kenyan bush" loading="lazy" width="900" height="506"><figcaption>Sundowner dinners in the bush</figcaption></figure>
+    <figure class="g5"><img src="assets/hartebeest-herd.webp" alt="Hartebeest herd on a Kenya game drive" loading="lazy" width="900" height="900"><figcaption>Game drives with expert guides</figcaption></figure>
+  </div>
+</div></section>
+
+<!-- WHO IT IS FOR -->
+<section class="sec alt"><div class="w">
+  <div class="head"><span class="eyebrow">Made for every traveller</span><h2>Holidays for couples, families and groups</h2>
+    <p>Tell us who is coming and what you enjoy. We shape the package around you.</p></div>
+  <div class="who">
+    <div><h3>Couples and honeymooners</h3><p>Private suites, beach resorts and sundowner dinners for two.</p></div>
+    <div><h3>Families</h3><p>Safe, easy trips with rooms and activities that suit the kids.</p></div>
+    <div><h3>Friends and groups</h3><p>Group rates, shared transport and one organiser for everyone.</p></div>
+    <div><h3>Company teams</h3><p>Planning a retreat for your staff? See our <a href="/corporate-travel-management/" style="color:var(--b);text-decoration:underline">corporate travel</a> service.</p></div>
+  </div>
+</div></section>
+
+<!-- PROCESS -->
+<section class="sec"><div class="w">
+  <div class="head"><span class="eyebrow">How it works</span><h2>From call back to boarding pass in 4 steps</h2></div>
+  <div class="steps">
+    <div class="st"><h3>Request a call back</h3><p>Answer 3 quick questions. It takes under a minute.</p></div>
+    <div class="st"><h3>We call and quote</h3><p>A consultant calls you and sends a clear written quote the same day.</p></div>
+    <div class="st"><h3>You confirm</h3><p>Choose your option. We book flights, hotels and transfers and help with visas.</p></div>
+    <div class="st"><h3>You travel</h3><p>Pack your bags. We stay on call if you need anything before or during your trip.</p></div>
+  </div>
+</div></section>
+
+<!-- TESTIMONIALS (real Google reviews) -->
+<section class="sec alt"><div class="w">
+  <div class="head"><span class="eyebrow">Client reviews</span><h2>What our clients say about Spice Travel</h2></div>
+  <div class="tsum"><b>5.0</b><span class="st5">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>27 Google reviews</span></div>
+  <div class="tw">
+    <button type="button" class="tn prev" aria-label="Previous reviews">&lsaquo;</button>
+    <div class="track" id="sl-track">
+      <figure class="tcard"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>Great and very responsive TMC with outstanding customer service.</blockquote><figcaption><b>Stella Korir</b><br>Google review</figcaption></figure>
+      <figure class="tcard"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>First class customer service, pre and after sale service. Keep it up.</blockquote><figcaption><b>Anthony Kahuthia</b><br>Google review</figcaption></figure>
+      <figure class="tcard"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>Efficient friendly and get the best deals.</blockquote><figcaption><b>Nick Stock</b><br>Google review</figcaption></figure>
+      <figure class="tcard"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>Spice Travel is a reliable company with amazing consultants. Good customer care.</blockquote><figcaption><b>Angelah Semo</b><br>Google review</figcaption></figure>
+      <figure class="tcard"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>Had the best travel experience.</blockquote><figcaption><b>Velma Ingado</b><br>Google review</figcaption></figure>
+      <figure class="tcard"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>Excellent services.</blockquote><figcaption><b>peacescess</b><br>Google review</figcaption></figure>
+    </div>
+    <button type="button" class="tn next" aria-label="Next reviews">&rsaquo;</button>
+  </div>
+  <p class="note"><a href="/reviews/">Read all client reviews</a></p>
+</div></section>
+
+<!-- SEO TEXT + INTERNAL LINKS -->
+<section class="sec"><div class="w"><div class="seo">
+  <h2>Your holiday packages travel agency in Nairobi</h2>
+  <p>Spice Travel is an IATA-certified travel agency in Nairobi offering holiday packages from Nairobi to the best of Kenya and the world. Our <a href="/safari-destinations-in-kenya/">Kenya safari packages</a> cover the Maasai Mara, Amboseli, Laikipia, Meru and Taita Hills, from comfortable lodges to luxury safari camps and Maasai Mara flying packages.</p>
+  <p>Prefer the coast? Choose a Mombasa beach holiday or a stay in Watamu. Going abroad? Ask about Dubai holiday packages from Nairobi, Zanzibar, Mauritius, Seychelles and Turkey. We book your <a href="/flight-booking-agents-in-nairobi/">flights</a>, hotels and <a href="/airport-transfer-nairobi/">airport transfers</a> and help with <a href="/visa-assistance-in-nairobi/">visa applications</a>, so one call sorts the whole trip.</p>
+  <p>Planning for December? Read our guide to <a href="/december-holidays-from-nairobi/">December holidays from Nairobi</a>. For more options see our <a href="/holiday-packages/">holiday packages</a> and <a href="/kenya-tour-operators/">Kenya tour operators</a>. Travelling with your team? See <a href="/corporate-travel-management/">corporate travel management</a>.</p>
+</div></div></section>
+
+<!-- FAQ -->
+<section class="sec alt"><div class="w">
+  <div class="head"><span class="eyebrow">Questions</span><h2>Holiday packages, answered</h2></div>
+  <div class="faq">
+    <details><summary>What does "per person sharing" mean?</summary><p>The price is per person when two people share a room. A single traveller may pay a supplement. Your quote shows the exact price for your group.</p></details>
+    <details><summary>What does "self-drive" mean in a package?</summary><p>You drive your own vehicle to the lodge. The package covers the accommodation and meals listed. We can also quote flights or transfers if you prefer not to drive.</p></details>
+    <details><summary>Are park and conservancy fees included?</summary><p>It depends on the package. For example, Loisaba and Elsa's Kopje exclude conservancy fees, and Soroi Amboseli excludes park fees, transport and game drives. Your quote lists what is included and what is extra.</p></details>
+    <details><summary>Can you include flights in my holiday?</summary><p>Yes. Some packages include return tickets, and we can add flights to any other package. Tell us your dates and we will quote it together.</p></details>
+    <details><summary>Do you help with visas for trips abroad?</summary><p>Yes. We guide the application and documents for destinations such as Dubai, Europe and the UK. See our <a href="/visa-assistance-in-nairobi/">visa assistance</a> page.</p></details>
+    <details><summary>How fast will I get my quote?</summary><p>A consultant calls you back and sends a written quote the same day on working days. Office hours are Mon&ndash;Fri 8:30am&ndash;5:30pm and Sat 8:30am&ndash;1pm.</p></details>
+    <details><summary>Can I change a package to suit my budget or dates?</summary><p>Yes. Packages are starting points. We adjust nights, room types, meals, activities and dates to fit you.</p></details>
+    <details><summary>Can you plan a family or group holiday?</summary><p>Yes. We plan holidays for families, friends and groups, with shared transport and group rates where available.</p></details>
+    <details><summary>Do you offer travel insurance?</summary><p>Yes. We provide travel insurance options that cover medical emergencies, trip delays and cancellations.</p></details>
+    <details><summary>Are the prices final?</summary><p>No. They are indicative starting prices per person sharing. Final pricing depends on season, group size and availability, and is confirmed in your written quote.</p></details>
+  </div>
+</div></section>
+
+<!-- MORE SERVICES (internal links) -->
+<section class="sec" style="padding:44px 0"><div class="w">
+  <div class="head" style="margin-bottom:22px"><span class="eyebrow">More from Spice Travel</span><h2 style="font-size:26px">Explore our other travel services</h2></div>
+  <div class="links">
+    <a href="/holiday-packages/">All holiday packages</a>
+    <a href="/safari-destinations-in-kenya/">Safari destinations in Kenya</a>
+    <a href="/kenya-tour-operators/">Kenya tour operators</a>
+    <a href="/flight-booking-agents-in-nairobi/">Flight booking agents</a>
+    <a href="/visa-assistance-in-nairobi/">Visa assistance</a>
+    <a href="/airport-transfer-nairobi/">Airport transfers</a>
+    <a href="/december-holidays-from-nairobi/">December holidays</a>
+    <a href="/corporate-travel-management/">Corporate travel</a>
+    <a href="/services/">All services</a>
+    <a href="/about-us/">About us</a>
+    <a href="/reviews/">Client reviews</a>
+    <a href="/contact-us/">Contact us</a>
+  </div>
+</div></section>
+
+<!-- FINAL CTA + QUICK FORM 2 -->
+<section class="final sec"><div class="w">
+  <h2>Ready for your next holiday?</h2>
+  <p class="l">Leave your name and number. We will call you back and send your free holiday quote the same day.</p>
+  <form class="qf" data-quick="final" novalidate>
+    <div class="qf-row"><input name="qn" type="text" placeholder="Your name" autocomplete="name" aria-label="Your name"><input name="qp" type="tel" placeholder="Phone number" autocomplete="tel" inputmode="tel" aria-label="Phone number"><button type="submit" class="btn btn-am pulse">Request a Call Back</button></div>
+    <p class="fe">Please enter your name and a valid phone number</p>
+    <p class="fine">Free, no obligation. We call you about this request only.</p>
+    <div class="qf-ok">Thank you. We will call you shortly.</div>
+  </form>
+  <p class="alt-l">Want to give more detail? <a class="sl-cta" href="#sl-form">Use the 3-step form</a> or email <a href="mailto:tours@spicetravel.co.ke">tours@spicetravel.co.ke</a>.</p>
+</div></section>
+
+<!-- MOBILE STICKY CTA + DESKTOP FLOATING CTA -->
+<div class="stk"><a class="btn btn-am sl-cta pulse" href="#sl-form">Request a Call Back</a></div>
+<a class="btn btn-am sl-cta float" id="sl-float" href="#sl-form" hidden>Request a Call Back</a>
+
+<!-- HIDDEN REAL FORM: your existing Contact Form 7 form (id 1438). All forms on this page submit through it. -->
+<div class="sl-cf7" aria-hidden="true">[contact-form-7 id="1438"]</div>
+
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById('sl-top');
+  if (!root) { return; }
+  var QUICK_EMAIL = 'noemail@spicetravel.co.ke';   /* see note at top of file */
+  var AMP = String.fromCharCode(38);
+
+  window.dataLayer = window.dataLayer || [];
+  function track(ev, extra) {
+    var o = { event: ev, page: 'packages_landing' };
+    if (extra) { for (var k in extra) { o[k] = extra[k]; } }
+    window.dataLayer.push(o);
+  }
+  function q(s, c) { return (c || root).querySelector(s); }
+  function qa(s, c) { return Array.prototype.slice.call((c || root).querySelectorAll(s)); }
+
+  var reduce = false;
+  try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { }
+  var hasIO = ('IntersectionObserver' in window);
+
+  /* ---------- open now badge (Nairobi time) ---------- */
+  function nairobiNow() {
+    try {
+      var f = new Intl.DateTimeFormat('en-GB', { timeZone: 'Africa/Nairobi', weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false });
+      var o = {};
+      f.formatToParts(new Date()).forEach(function (p) { o[p.type] = p.value; });
+      return { d: o.weekday, mins: (Number(o.hour) % 24) * 60 + Number(o.minute) };
+    } catch (e) { return null; }
+  }
+  (function liveBadge() {
+    var t = nairobiNow();
+    if (!t) { return; }
+    var open = false;
+    if (['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].indexOf(t.d) > -1) { open = (t.mins >= 510) ? (t.mins < 1050) : false; }
+    if (t.d === 'Sat') { open = (t.mins >= 510) ? (t.mins < 780) : false; }
+    var el = q('#sl-live');
+    el.className = open ? 'live open' : 'live';
+    el.querySelector('span').textContent = open ? 'We are open now: request a call back' : 'Office closed: we call you when we open';
+    el.hidden = false;
+  })();
+
+  /* ---------- reveal on scroll + count up ---------- */
+  function countUp(el) {
+    var to = Number(el.getAttribute('data-count'));
+    var suf = el.getAttribute('data-suf') || '';
+    var t0 = null;
+    function step(ts) {
+      if (t0 === null) { t0 = ts; }
+      var p = Math.min((ts - t0) / 1300, 1);
+      el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))) + suf;
+      if (p < 1) { requestAnimationFrame(step); }
+    }
+    requestAnimationFrame(step);
+  }
+  if (hasIO) {
+    if (!reduce) {
+      root.className = root.className + ' sl-js';
+      var targets = qa('.head,.benefit .bx,.pc,.who div,.steps .st,.gal figure,.of,.tsum,.tw,.seo,.links,.qband .w > div,.after');
+      targets.forEach(function (el) {
+        el.className = el.className + ' rv-in';
+        var idx = Array.prototype.indexOf.call(el.parentNode.children, el);
+        el.style.transitionDelay = Math.min(idx, 5) * 70 + 'ms';
+      });
+      var io = new IntersectionObserver(function (en) {
+        en.forEach(function (x) {
+          if (x.isIntersecting) { x.target.className = x.target.className + ' in'; io.unobserve(x.target); }
+        });
+      }, { threshold: 0.12 });
+      targets.forEach(function (el) { io.observe(el); });
+      var io2 = new IntersectionObserver(function (en) {
+        en.forEach(function (x) { if (x.isIntersecting) { countUp(x.target); io2.unobserve(x.target); } });
+      }, { threshold: 0.6 });
+      qa('[data-count]').forEach(function (el) { io2.observe(el); });
+    }
+  }
+
+  /* ---------- package tabs ---------- */
+  qa('.tab').forEach(function (t) {
+    t.addEventListener('click', function () {
+      var f = t.getAttribute('data-f');
+      qa('.tab').forEach(function (x) { if (x === t) { x.classList.add('on'); } else { x.classList.remove('on'); } });
+      qa('.pk .pc').forEach(function (c) {
+        var cats = (c.getAttribute('data-cat') || '').split(' ');
+        var show = (f === 'all') ? true : (cats.indexOf(f) > -1);
+        if (show) { c.classList.remove('off'); } else { c.classList.add('off'); }
+      });
+      track('tab_click', { tab: f });
+    });
+  });
+
+  /* ---------- step form ---------- */
+  var steps = qa('.sl-step');
+  var bar = q('.bar i');
+  var label = q('.stepno');
+  var state = { need: '', size: '', when: '', budget: '', time: 'Anytime', pkg: '' };
+  var started = false;
+  var sending = false;
+  var pending = null;
+
+  var SERVICE = {
+    'Kenya safari': 'Safari ' + AMP + ' Wildlife Tour',
+    'Beach holiday': 'Holiday Package',
+    'International trip': 'Holiday Package',
+    'Luxury Maasai Mara': 'Safari ' + AMP + ' Wildlife Tour',
+    'Honeymoon or couples getaway': 'Holiday Package',
+    'Family or group holiday': 'Group Travel'
+  };
+
+  function go(n) {
+    steps.forEach(function (s) { s.hidden = (String(n) !== s.getAttribute('data-step')); });
+    bar.style.width = (n * 33.34) + '%';
+    label.textContent = 'Step ' + n + ' of 3';
+    track('form_step', { step: n });
+  }
+  function startedOnce() {
+    if (started) { return; }
+    started = true;
+    track('form_start');
+  }
+  function select(group, value) {
+    state[group] = value;
+    qa('.opt[data-g="' + group + '"]').forEach(function (b) {
+      if (b.getAttribute('data-v') === value) { b.classList.add('on'); } else { b.classList.remove('on'); }
+    });
+    var box = q('#g-' + group);
+    if (box) { box.classList.remove('bad'); }
+  }
+  qa('.opt').forEach(function (b) {
+    b.addEventListener('click', function () {
+      startedOnce();
+      var g = b.getAttribute('data-g');
+      select(g, b.getAttribute('data-v'));
+      if (g === 'need') { setTimeout(function () { go(2); }, 220); }
+    });
+  });
+  qa('[data-back]').forEach(function (b) {
+    b.addEventListener('click', function () { go(Number(b.getAttribute('data-back'))); });
+  });
+  function bad(id, on) {
+    var f = q('#' + id);
+    if (!f) { return; }
+    if (on) { f.classList.add('bad'); } else { f.classList.remove('bad'); }
+  }
+  q('#sl-next2').addEventListener('click', function () {
+    if (!state.size) { q('#g-size').classList.add('bad'); return; }
+    go(3);
+  });
+
+  function toForm() {
+    var f = q('#sl-form');
+    if (f) { f.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  }
+  qa('.sl-cta').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); track('cta_click'); toForm(); });
+  });
+  qa('.sl-pick').forEach(function (b) {
+    b.addEventListener('click', function () {
+      state.pkg = b.getAttribute('data-pkg');
+      track('package_click', { package: state.pkg });
+      var pill = q('#sl-pkgpill');
+      pill.textContent = 'Interested in: ' + state.pkg;
+      pill.hidden = false;
+      if (!state.need) { select('need', 'Kenya safari'); }
+      startedOnce();
+      go(2);
+      toForm();
+    });
+  });
+
+  /* ---------- submit through the existing CF7 form ---------- */
+  function cfForm() { return document.querySelector('.sl-cf7 form.wpcf7-form'); }
+  function setField(form, name, value) {
+    var el = form.querySelector('[name="' + name + '"]');
+    if (!el) { return false; }
+    el.value = value;
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+    return true;
+  }
+  function utm() {
+    var out = [];
+    try {
+      var p = new URLSearchParams(window.location.search);
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid'].forEach(function (k) {
+        var v = p.get(k);
+        if (v) { out.push(k + '=' + v); }
+      });
+    } catch (err) { }
+    return out.join(' | ');
+  }
+  function pageUrl() { return window.location.href.split('?')[0]; }
+
+  function sendToCF7(data, ctx) {
+    var form = cfForm();
+    if (!form) { return false; }
+    var lines = data.lines.slice();
+    lines.push('Phone: ' + data.phone);
+    lines.push('Page: ' + pageUrl());
+    var u = utm();
+    if (u) { lines.push('Source: ' + u); }
+    setField(form, 'Name', data.name);
+    setField(form, 'Email', data.email);
+    setField(form, 'Phone', data.phone);
+    setField(form, 'Service', data.service);
+    setField(form, 'Message', lines.join('\n'));
+    pending = ctx;
+    var submit = form.querySelector('[type="submit"]');
+    if (!submit) { pending = null; return false; }
+    submit.click();
+    return true;
+  }
+
+  function showErr(msg) {
+    var b = q('#sl-errbox');
+    b.textContent = msg;
+    b.style.display = 'block';
+  }
+  function setSending(on) {
+    sending = on;
+    var b = q('#sl-send');
+    b.disabled = on;
+    b.textContent = on ? 'Sending...' : 'Request My Call Back';
+  }
+
+  q('#sl-send').addEventListener('click', function () {
+    if (sending) { return; }
+    q('#sl-errbox').style.display = 'none';
+    var name = q('#sl-name').value.replace(/\s+/g, ' ').trim();
+    var phone = q('#sl-phone').value.trim();
+    var email = q('#sl-email').value.trim();
+    var ok = true;
+    if (name.length < 2) { bad('f-name', true); ok = false; } else { bad('f-name', false); }
+    if (phone.replace(/\D/g, '').length < 9) { bad('f-phone', true); ok = false; } else { bad('f-phone', false); }
+    if (email.length > 0) {
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { bad('f-email', true); ok = false; } else { bad('f-email', false); }
+    } else { bad('f-email', false); }
+    if (!ok) { return; }
+    var useEmail = (email.length > 0) ? email : QUICK_EMAIL;
+    var sent = sendToCF7({
+      name: name, email: useEmail, phone: phone,
+      service: SERVICE[state.need] || 'Holiday Package',
+      lines: [
+        'HOLIDAY PACKAGES LANDING PAGE: CALL BACK REQUEST (step form)',
+        'Holiday type: ' + state.need,
+        'Travellers: ' + state.size,
+        'Travelling: ' + (state.when || 'n/a'),
+        'Budget per person: ' + (state.budget || 'n/a'),
+        'Package of interest: ' + (state.pkg || 'none'),
+        'Best time to call: ' + state.time,
+        (email.length > 0) ? ('Email: ' + email) : 'No email given: please CALL this number.'
+      ]
+    }, { type: 'step' });
+    if (sent) { setSending(true); } else { showErr('Sorry, the form could not load. Please try again in a moment.'); }
+  });
+
+  /* ---------- quick call-back forms (name + phone) ---------- */
+  qa('form[data-quick]').forEach(function (f) {
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (sending) { return; }
+      var name = f.querySelector('[name="qn"]').value.replace(/\s+/g, ' ').trim();
+      var phone = f.querySelector('[name="qp"]').value.trim();
+      var good = (name.length >= 2) ? (phone.replace(/\D/g, '').length >= 9) : false;
+      if (!good) { f.classList.add('bad'); return; }
+      f.classList.remove('bad');
+      var src = f.getAttribute('data-quick');
+      var btn = f.querySelector('button[type="submit"]');
+      var sent = sendToCF7({
+        name: name, email: QUICK_EMAIL, phone: phone, service: 'Holiday Package',
+        lines: [
+          'HOLIDAY PACKAGES LANDING PAGE: QUICK CALL BACK (' + src + ')',
+          'No email given: please CALL this number.',
+          'Package of interest: ' + (state.pkg || 'none')
+        ]
+      }, { type: 'quick', el: f, source: src, btn: btn });
+      if (sent) { sending = true; btn.disabled = true; } else { f.classList.add('bad'); }
+    });
+  });
+
+  /* ---------- CF7 result events (only our hidden form) ---------- */
+  function mine(e) {
+    var t = e.target;
+    if (!t) { return false; }
+    if (!t.closest) { return false; }
+    return !!t.closest('.sl-cf7');
+  }
+  function idle() {
+    sending = false;
+    var b = q('#sl-send');
+    b.disabled = false;
+    b.textContent = 'Request My Call Back';
+    if (pending) { if (pending.btn) { pending.btn.disabled = false; } }
+  }
+
+  document.addEventListener('wpcf7mailsent', function (e) {
+    if (!mine(e)) { return; }
+    var ctx = pending;
+    idle();
+    if (!ctx) { return; }
+    if (ctx.type === 'step') {
+      q('#sl-flow').hidden = true;
+      q('#sl-thanks').hidden = false;
+      track('generate_lead', { lead_type: 'packages_callback', source: 'step_form', need: state.need, travellers: state.size, package: state.pkg || 'none' });
+    } else {
+      ctx.el.classList.add('done');
+      track('generate_lead', { lead_type: 'quick_callback', source: ctx.source, package: state.pkg || 'none' });
+    }
+    pending = null;
+  });
+
+  document.addEventListener('wpcf7invalid', function (e) {
+    if (!mine(e)) { return; }
+    var ctx = pending;
+    idle();
+    pending = null;
+    if (!ctx) { return; }
+    if (ctx.type === 'step') {
+      go(3);
+      var map = { Name: 'f-name', Email: 'f-email', Phone: 'f-phone' };
+      var list = [];
+      try { list = e.detail.apiResponse.invalid_fields || []; } catch (err) { }
+      var marked = false;
+      list.forEach(function (x) { if (map[x.field]) { bad(map[x.field], true); marked = true; } });
+      showErr(marked ? 'Please check the highlighted details and try again.' : 'Something looks wrong with the details. Please check and try again.');
+    } else {
+      ctx.el.classList.add('bad');
+    }
+  });
+
+  ['wpcf7spam', 'wpcf7mailfailed'].forEach(function (ev) {
+    document.addEventListener(ev, function (e) {
+      if (!mine(e)) { return; }
+      var ctx = pending;
+      idle();
+      pending = null;
+      if (ctx) {
+        if (ctx.type === 'step') { showErr('Sorry, we could not send your request. Please try again.'); } else { ctx.el.classList.add('bad'); }
+      }
+    });
+  });
+
+  /* ---------- testimonials carousel ---------- */
+  var track_ = q('#sl-track');
+  var prev = q('.tn.prev');
+  var next = q('.tn.next');
+  var hover = false;
+  function slide(dir) {
+    var step = track_.clientWidth * 0.9;
+    var end = (track_.scrollLeft + track_.clientWidth) >= (track_.scrollWidth - 6);
+    if (dir > 0) {
+      if (end) { track_.scrollTo({ left: 0, behavior: 'smooth' }); } else { track_.scrollBy({ left: step, behavior: 'smooth' }); }
+    } else {
+      track_.scrollBy({ left: -step, behavior: 'smooth' });
+    }
+  }
+  prev.addEventListener('click', function () { slide(-1); });
+  next.addEventListener('click', function () { slide(1); });
+  track_.addEventListener('mouseenter', function () { hover = true; });
+  track_.addEventListener('mouseleave', function () { hover = false; });
+  track_.addEventListener('touchstart', function () { hover = true; }, { passive: true });
+  if (!reduce) { setInterval(function () { if (!hover) { slide(1); } }, 6500); }
+
+  /* ---------- floating CTA + scroll progress ---------- */
+  var progBar = q('#sl-prog i');
+  function updProg() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - window.innerHeight;
+    progBar.style.width = ((max > 0) ? (window.scrollY / max * 100) : 0) + '%';
+  }
+  var floatBtn = q('#sl-float');
+  function updFloat() {
+    var f = q('#sl-form').getBoundingClientRect();
+    var inView = (f.top < window.innerHeight * 0.85) ? (f.bottom > 0) : false;
+    var show = false;
+    if (window.scrollY > 600) { if (!inView) { show = true; } }
+    floatBtn.hidden = !show;
+  }
+  window.addEventListener('scroll', function () { updFloat(); updProg(); }, { passive: true });
+  updFloat();
+  updProg();
+
+  /* ---------- offer countdown (hides an offer after its end date) ---------- */
+  qa('[data-until]').forEach(function (el) {
+    var d = new Date(el.getAttribute('data-until') + 'T23:59:59+03:00');
+    var left = Math.ceil((d.getTime() - Date.now()) / 86400000);
+    if (left < 0) {
+      var card = el.closest('.of');
+      if (card) { card.hidden = true; }
+    } else {
+      el.textContent = (left === 0) ? 'Offer ends today' : ((left === 1) ? '1 day left' : (left + ' days left'));
+    }
+  });
+  var anyOffer = qa('.of').filter(function (c) { return !c.hidden; });
+  if (anyOffer.length === 0) { var so = q('#sl-offers'); if (so) { so.hidden = true; } }
+})();
+</script>
