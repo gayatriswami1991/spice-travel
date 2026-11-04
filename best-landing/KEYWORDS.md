@@ -57,3 +57,17 @@ Descriptions:
 - Tracking template: `{lpurl}?utm_source=google&utm_medium=cpc&utm_campaign={campaignid}&utm_term={keyword}&utm_content={adgroupid}`
 - Conversion: GTM custom event `generate_lead`. Parameters: `intent` (corporate, agent, flights, packages), `lead_type`, `source`, `need`, `package`.
 - Every lead email starts with "BEST LANDING PAGE" and a REQUEST TYPE line (CORPORATE OR GROUP TRAVEL, FLIGHT TICKETS, HOLIDAY PACKAGE, VISA OR OTHER HELP).
+
+## Festive season keywords (Nov to Jan): Christmas and New Year
+Add these ad groups now and pause them after 10 Jan 2027 (the festive section on the page hides itself that day). Use the packages URL (`?s=packages`), and the corporate URL for the last group.
+
+| Ad group | Keywords | Final URL |
+| --- | --- | --- |
+| Christmas packages | christmas holiday packages kenya, christmas packages from nairobi, christmas holidays from nairobi, christmas safari kenya, christmas in maasai mara | ?s=packages#sl-festive |
+| New Year | new year holiday packages kenya, new year packages from nairobi, new year getaway kenya, new year mombasa packages, new year watamu | ?s=packages#sl-festive |
+| Dubai festive | christmas in dubai from nairobi, dubai christmas packages kenya, dubai new year packages from nairobi | ?s=packages#sl-festive |
+| Festive flights | christmas flights from nairobi, december flights nairobi, book flights for december nairobi | ?s=flights |
+| Year-end corporate | year end staff retreat kenya, end of year corporate retreat nairobi, company christmas party venue kenya, year end team building kenya | base URL#sl-festive |
+
+Festive ad copy: "Christmas in Dubai from USD 1,539", "New Year Packages from Nairobi", "Book Early: December Fills Fast", "Year-End Team Retreats in Kenya", "Free Festive Quote Today".
+Meta title: Corporate Travel Agent Nairobi | Christmas, New Year Deals (58 of 60). Meta description (150 of 160): IATA-certified travel agent in Nairobi. Christmas and New Year packages, festive flights and year-end corporate retreats. Free quote, call back today!

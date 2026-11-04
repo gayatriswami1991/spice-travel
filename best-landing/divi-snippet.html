@@ -10,8 +10,8 @@
 
   PAGE SETTINGS (set in Yoast, not in this file; same values are in seo-head.html):
      URL            https://spicetravel.co.ke/best-travel-agent-nairobi/
-     Meta title     Corporate Travel Agent Nairobi | Free Quote | Spice Travel
-     Meta descr.    IATA-certified since 1994 and rated 5 on Google. Corporate travel, flight booking and holiday packages in Nairobi. Get a free quote and call back today!
+     Meta title     Corporate Travel Agent Nairobi | Christmas, New Year Deals
+     Meta descr.    IATA-certified travel agent in Nairobi. Christmas and New Year packages, festive flights and year-end corporate retreats. Free quote, call back today!
      Robots         noindex, follow  (ad page; keeps it from competing with /corporate-travel-management/)
   JSON-LD schema (WebPage, BreadcrumbList, TravelAgency, 3 Services, FAQPage) is already included below.
 
@@ -41,8 +41,8 @@
    "@type": "WebPage",
    "@id": "https://spicetravel.co.ke/best-travel-agent-nairobi/#webpage",
    "url": "https://spicetravel.co.ke/best-travel-agent-nairobi/",
-   "name": "Corporate Travel Agent Nairobi | Free Quote | Spice Travel",
-   "description": "IATA-certified since 1994 and rated 5 on Google. Corporate travel, flight booking and holiday packages in Nairobi. Get a free quote and call back today!",
+   "name": "Corporate Travel Agent Nairobi | Christmas, New Year Deals",
+   "description": "IATA-certified travel agent in Nairobi. Christmas and New Year packages, festive flights and year-end corporate retreats. Free quote, call back today!",
    "inLanguage": "en-KE",
    "isPartOf": {
     "@id": "https://spicetravel.co.ke/#website"
@@ -240,6 +240,22 @@
      "acceptedAnswer": {
       "@type": "Answer",
       "text": "Yes, inbound and outbound: group flights, visa assistance, hotel blocks, ground transfers and arrival logistics for conference delegates and project teams."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do you have Christmas and New Year holiday packages?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. We offer Christmas in Dubai, Maasai Mara festive safaris, New Year beach stays on the Kenyan coast and trips abroad. Book early, because December lodges and flights fill up fast."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can you plan a year-end staff retreat or office party?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. We organise end-of-year retreats, staff parties and client thank-you trips at lodges, beach resorts and the bush, with transport, meals and activities for groups from 5 to 100+."
      }
     },
     {
@@ -643,6 +659,26 @@
 @media(max-width:760px){.sl .benefit{grid-template-columns:1fr}.sl .gal{grid-auto-rows:170px}}
 @media(max-width:520px){.sl .needs,.sl .row2f{grid-template-columns:1fr}.sl .gal{grid-template-columns:1fr}.sl .gal figure{grid-column:auto!important;grid-row:auto!important}}
 @media(prefers-reduced-motion:reduce){.sl .hs{animation:none}.sl .hs:first-child{opacity:1}}
+/* festive section */
+.sl .badge.fest{background:linear-gradient(135deg,#c0392b,#e0951a);border-color:rgba(255,255,255,.4);font-weight:600}
+.sl .fx{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.sl .fc{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 26px rgba(13,31,60,.1);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.sl .fc:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(13,31,60,.18)}
+.sl .fi{position:relative;overflow:hidden}
+.sl .fi img{aspect-ratio:4/3;width:100%;object-fit:cover;transition:transform .5s}
+.sl .fc:hover .fi img{transform:scale(1.06)}
+.sl .fl{position:absolute;left:12px;top:12px;background:#c0392b;color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:50px;padding:5px 12px}
+.sl .fb{padding:18px;display:flex;flex-direction:column;flex:1}
+.sl .fb h3{font-size:20px;margin-bottom:6px}
+.sl .fb p{color:var(--mu);font-size:14.5px;margin-bottom:12px;min-height:66px}
+.sl .fp{font-size:22px;font-weight:700;color:var(--n);margin-top:auto;margin-bottom:12px}
+.sl .fp small{display:block;font-size:12.5px;font-weight:400;color:var(--mu)}
+.sl .fb .btn{width:100%;padding:12px 16px;font-size:14.5px}
+.sl .fs{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-top:26px;background:linear-gradient(135deg,#0d1f3c,#0c71c3);color:#fff;border-radius:16px;padding:22px 26px}
+.sl .fs h3{color:#fff;font-size:21px;margin-bottom:4px}
+.sl .fs p{opacity:.9;font-size:15px}
+@media(max-width:1020px){.sl .fx{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.sl .fx{grid-template-columns:1fr}.sl .fb p{min-height:0}}
 /* clearer banner photos */
 .sl .hero::before{background:linear-gradient(100deg,rgba(9,22,40,.8) 0%,rgba(13,31,60,.5) 46%,rgba(13,31,60,.08) 100%)}
 .sl .hero h1,.sl .hero .lead,.sl .hero .ticks,.sl .hero .proof{text-shadow:0 2px 14px rgba(0,0,0,.45)}
@@ -692,6 +728,7 @@
     <div class="pills">
       <span class="badge">IATA Certified &middot; Nairobi since 1994</span>
       <span class="live" id="sl-live" hidden><i></i><span></span></span>
+      <span class="badge fest" id="sl-fest" hidden></span>
     </div>
     <h1 id="sl-h1">Best Corporate Travel Agent in <span class="hl">Nairobi</span></h1>
     <p class="lead" id="sl-lead">Corporate travel management, flight booking and holiday packages with one IATA-certified travel agent in Nairobi. Get your free quote and a call back the same day.</p>
@@ -866,7 +903,7 @@
   </div>
 </div></section>
 
-<div class="ribbon"><b>Year-end retreats, conferences and holidays book up fast.</b> Request your quote now to secure flights, lodges and group rates.</div>
+<div class="ribbon" id="sl-ribbon" data-generic="Year-end retreats, conferences and holidays book up fast. Request your quote now to secure flights, lodges and group rates."><b>Christmas and New Year 2026:</b> flights, lodges and group rates are filling fast. Request your quote now.</div>
 
 <!-- TRUST STRIP -->
 <div class="strip"><div class="w">
@@ -882,6 +919,30 @@
   <div class="mq-set"><span>Corporate travel</span><i>&#10022;</i><span>Flights</span><i>&#10022;</i><span>Conferences</span><i>&#10022;</i><span>Team retreats</span><i>&#10022;</i><span>Maasai Mara</span><i>&#10022;</i><span>Amboseli</span><i>&#10022;</i><span>Mombasa</span><i>&#10022;</i><span>Zanzibar</span><i>&#10022;</i><span>Dubai</span><i>&#10022;</i><span>Visas</span><i>&#10022;</i></div>
   <div class="mq-set"><span>Corporate travel</span><i>&#10022;</i><span>Flights</span><i>&#10022;</i><span>Conferences</span><i>&#10022;</i><span>Team retreats</span><i>&#10022;</i><span>Maasai Mara</span><i>&#10022;</i><span>Amboseli</span><i>&#10022;</i><span>Mombasa</span><i>&#10022;</i><span>Zanzibar</span><i>&#10022;</i><span>Dubai</span><i>&#10022;</i><span>Visas</span><i>&#10022;</i></div>
 </div></div>
+
+<!-- FESTIVE SEASON -->
+<section class="sec" id="sl-festive"><div class="w">
+  <div class="head"><span class="eyebrow">Christmas and New Year 2026</span>
+    <h2>Christmas and New Year Holidays from Nairobi</h2>
+    <p>Festive trips, year-end team events and flights for the holiday rush. Book early for the best rooms and fares.</p></div>
+  <div class="fx">
+    <article class="fc"><div class="fi"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/dubai.webp" alt="Burj Al Arab in Dubai at sunset for Christmas holidays" width="800" height="600"><span class="fl">Christmas abroad</span></div>
+      <div class="fb"><h3>Christmas in Dubai</h3><p>5 nights in a 4-star hotel with Burj Khalifa, a dhow dinner cruise and visa processing.</p><div class="fp">USD 1,539 <small>per person, double sharing</small></div>
+      <button type="button" class="btn btn-ol sl-pick" data-pkg="Christmas in Dubai (5 nights)">Get a quote</button></div></article>
+    <article class="fc"><div class="fi"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/balloon-sunrise-real.webp" alt="Hot air balloons over the Maasai Mara at sunrise" width="800" height="600"><span class="fl">Christmas safari</span></div>
+      <div class="fb"><h3>Christmas in the Maasai Mara</h3><p>Pay 2 nights, stay 3 at Sand River with flights, bush breakfasts and game drives.</p><div class="fp">KES 143,100 <small>per person sharing</small></div>
+      <button type="button" class="btn btn-ol sl-pick" data-pkg="Sand River Maasai Mara and Elephant Pepper Camp (Pay 2 Stay 3)">Get a quote</button></div></article>
+    <article class="fc"><div class="fi"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/beach-resort-pool.webp" alt="Beach resort pool on the Kenyan coast for New Year" width="800" height="600"><span class="fl">New Year beach</span></div>
+      <div class="fb"><h3>New Year on the Coast</h3><p>Hemingways Watamu pay 3, stay 4, or Sarova Whitesands with flights and half board.</p><div class="fp">KES 50,600 <small>Sarova, per person sharing</small></div>
+      <button type="button" class="btn btn-ol sl-pick" data-pkg="New Year at the coast (Watamu or Mombasa)">Get a quote</button></div></article>
+    <article class="fc"><div class="fi"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/bush-dinner-sunset.webp" alt="Year-end team dinner in the Kenyan bush at sunset" width="800" height="600"><span class="fl">For companies</span></div>
+      <div class="fb"><h3>Year-end Team Retreat</h3><p>Staff party, strategy day or client thank-you in the bush. Group quotes for 5 to 100+.</p><div class="fp">Group quote <small>in one day</small></div>
+      <button type="button" class="btn btn-am sl-pick" data-need="corporate" data-pkg="Year-end team retreat or staff party">Plan our retreat</button></div></article>
+  </div>
+  <div class="fs"><div><h3>Festive flights fill up from mid-December</h3><p>Book flights home or abroad early. We search every airline and ticket fast.</p></div>
+    <button type="button" class="btn btn-am sl-need" data-need="flights">Get a flight quote</button></div>
+  <!-- TODO before launch: confirm Christmas in Dubai 2026 dates and price, and the festive validity of the Mara and Watamu offers. Section hides itself on 10 Jan 2027. -->
+</div></section>
 
 <!-- WHY THE BEST -->
 <section class="sec"><div class="w">
@@ -910,6 +971,7 @@
         <li><b>Conference and event travel:</b> delegates, rooming lists, transfers</li>
         <li><b>Team retreats and incentive trips</b> at lodges and beach resorts</li>
         <li><b>Own safari vehicles</b> and coaches for group transport</li>
+        <li><b>Year-end parties and retreats</b> for staff and clients</li>
         <li><b>Itemised invoicing</b> and one accountable contact</li>
       </ul>
       <div class="acts"><button type="button" class="btn btn-am sl-need pulse" data-need="corporate">Get a corporate quote</button><a class="l" href="/corporate-travel-management/">Corporate travel management</a></div>
@@ -1059,8 +1121,8 @@
 <!-- CINEMATIC BAND -->
 <section class="cine"><img class="cine-bg skip-lazy" data-no-lazy="1" data-skip-lazy="" src="assets/sunrise-balloons.webp" alt="" width="1400" height="787"><div class="w">
   <span class="eyebrow">Corporate retreats and holidays in Kenya</span>
-  <h2>Give your team, or your family, a sunrise they will talk about all year</h2>
-  <p>Balloon safaris over the Mara, bush dinners and quiet lodges. We plan the whole trip, you enjoy it.</p>
+  <h2>Start the New Year under an African sunrise</h2>
+  <p>Christmas in the Mara, New Year on the coast, or a year-end retreat for your team. We plan the whole trip, you enjoy it.</p>
   <a class="btn btn-am sl-cta pulse" href="#sl-form">Plan My Trip</a>
 </div></section>
 
@@ -1138,6 +1200,8 @@
     <details><summary>How fast will I get a quote?</summary><p>A consultant calls you back and sends a written quote the same day on working days. Office hours are Mon&ndash;Fri 8:30am&ndash;5:30pm and Sat 8:30am&ndash;1pm.</p></details>
     <details><summary>Can you invoice our company?</summary><p>Yes. We prepare itemised corporate invoices. If your team travels often, ask about an ongoing business travel arrangement during the call.</p></details>
     <details><summary>Do you handle conferences, NGOs and international delegations?</summary><p>Yes, inbound and outbound: group flights, <a href="/visa-assistance-in-nairobi/">visa assistance</a>, hotel blocks, ground transfers and arrival logistics for conference delegates and project teams.</p></details>
+    <details><summary>Do you have Christmas and New Year holiday packages?</summary><p>Yes. We offer Christmas in Dubai, Maasai Mara festive safaris, New Year beach stays on the Kenyan coast and trips abroad. Book early, because December lodges and flights fill up fast.</p></details>
+    <details><summary>Can you plan a year-end staff retreat or office party?</summary><p>Yes. We organise end-of-year retreats, staff parties and client thank-you trips at lodges, beach resorts and the bush, with transport, meals and activities for groups from 5 to 100+.</p></details>
     <details><summary>Do you also sell holiday and safari packages?</summary><p>Yes. We offer Kenya safari packages, beach holidays and international trips for individuals, families and groups. Prices on this page are indicative starting prices per person sharing.</p></details>
     <details><summary>Can you arrange car hire, transfers and travel insurance?</summary><p>Yes. We add airport transfers, car hire and travel insurance to the same quote, so everything is booked and invoiced together.</p></details>
   </div>
@@ -1649,6 +1713,28 @@
   window.addEventListener('scroll', function () { updFloat(); updProg(); }, { passive: true });
   updFloat();
   updProg();
+
+  /* ---------- festive season: countdown pill, auto-hide after 10 Jan 2027 ---------- */
+  (function festive() {
+    var now = Date.now();
+    var DAY = 86400000;
+    var xmas = new Date('2026-12-25T00:00:00+03:00').getTime();
+    var ny = new Date('2027-01-01T00:00:00+03:00').getTime();
+    var end = new Date('2027-01-10T23:59:59+03:00').getTime();
+    var pill = q('#sl-fest');
+    var rib = q('#sl-ribbon');
+    var sec = q('#sl-festive');
+    if (now > end) {
+      if (sec) { sec.hidden = true; }
+      if (rib) { rib.textContent = rib.getAttribute('data-generic'); }
+      return;
+    }
+    var txt = '';
+    if (now < xmas) { txt = Math.ceil((xmas - now) / DAY) + ' days to Christmas: book your holiday now'; }
+    else if (now < ny) { txt = 'New Year is here: last-minute trips on request'; }
+    else { txt = 'New Year trips: ask for the latest availability'; }
+    if (pill) { pill.textContent = txt; pill.hidden = false; }
+  })();
 
   /* ---------- offer countdown (hides an offer after its end date) ---------- */
   qa('[data-until]').forEach(function (el) {

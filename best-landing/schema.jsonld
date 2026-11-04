@@ -5,8 +5,8 @@
    "@type": "WebPage",
    "@id": "https://spicetravel.co.ke/best-travel-agent-nairobi/#webpage",
    "url": "https://spicetravel.co.ke/best-travel-agent-nairobi/",
-   "name": "Corporate Travel Agent Nairobi | Free Quote | Spice Travel",
-   "description": "IATA-certified since 1994 and rated 5 on Google. Corporate travel, flight booking and holiday packages in Nairobi. Get a free quote and call back today!",
+   "name": "Corporate Travel Agent Nairobi | Christmas, New Year Deals",
+   "description": "IATA-certified travel agent in Nairobi. Christmas and New Year packages, festive flights and year-end corporate retreats. Free quote, call back today!",
    "inLanguage": "en-KE",
    "isPartOf": {
     "@id": "https://spicetravel.co.ke/#website"
@@ -204,6 +204,22 @@
      "acceptedAnswer": {
       "@type": "Answer",
       "text": "Yes, inbound and outbound: group flights, visa assistance, hotel blocks, ground transfers and arrival logistics for conference delegates and project teams."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do you have Christmas and New Year holiday packages?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. We offer Christmas in Dubai, Maasai Mara festive safaris, New Year beach stays on the Kenyan coast and trips abroad. Book early, because December lodges and flights fill up fast."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can you plan a year-end staff retreat or office party?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. We organise end-of-year retreats, staff parties and client thank-you trips at lodges, beach resorts and the bush, with transport, meals and activities for groups from 5 to 100+."
      }
     },
     {
