@@ -21,9 +21,8 @@
   EMAIL: when the visitor leaves email empty the script fills QUICK_EMAIL (below). Either keep that placeholder,
   or make Email optional in form 1438 and set QUICK_EMAIL to ''.
 
-  OPTIONAL IMAGES (light file only): upload your own photos named team-meeting-outdoors.webp,
-  airplane-wing-sunrise.webp or team-activity-bush.webp next to the other images and they replace the
-  illustrations automatically. See IMAGE-PROMPTS.md.
+  OPTIONAL IMAGE (light file only): upload your own photo named team-meeting-outdoors.webp next to the
+  other images and it replaces the lodge photo in the corporate section. See IMAGE-PROMPTS.md.
 
   NOTE: JS/CSS below intentionally contain no ampersand characters (WordPress rewrites bare "&").
 -->
@@ -40,7 +39,6 @@
 .sl .hero-bg{background:none;animation:none}
 .sl .hs{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:slShow 18s infinite}
 @keyframes slShow{0%{opacity:0;transform:scale(1)}6%{opacity:1}35%{opacity:1}42%{opacity:0;transform:scale(1.1)}100%{opacity:0;transform:scale(1.1)}}
-.sl .hplane{position:absolute;left:0;right:0;bottom:0;width:100%;height:56px;z-index:0;pointer-events:none;opacity:.7}
 .sl .cine{background-image:url('assets/sunrise-balloons.webp')}
 .sl .need .tg{display:inline-block;align-self:flex-start;background:var(--am);color:#1b1200;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:50px;padding:2px 9px}
 .sl .needs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -78,15 +76,8 @@
 .sl .acts{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:18px}
 .sl .acts a.l{color:var(--b);font-weight:600;text-decoration:underline;font-size:15px}
 .sl .slot{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:#0d1f3c;box-shadow:0 18px 44px rgba(13,31,60,.2)}
-.sl .slot svg,.sl .slot img{position:absolute;inset:0;width:100%;height:100%}
+.sl .slot img{position:absolute;inset:0;width:100%;height:100%}
 .sl .slot img{object-fit:cover}
-.sl .cl{animation:slDrift 16s ease-in-out infinite alternate}
-.sl .cl2{animation:slDrift 22s ease-in-out infinite alternate-reverse}
-@keyframes slDrift{from{transform:translateX(-50px)}to{transform:translateX(50px)}}
-.sl .pf{animation:slFloat 4s ease-in-out infinite alternate}
-@keyframes slFloat{from{transform:translateY(0)}to{transform:translateY(-14px)}}
-.sl .dash{animation:slDash 3s linear infinite}
-@keyframes slDash{to{stroke-dashoffset:-56}}
 .sl .routes{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
 .sl .routes span{background:#e6f1fb;color:var(--n);border-radius:50px;padding:7px 14px;font-size:14px;font-weight:500}
 .sl .mini{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
@@ -98,12 +89,17 @@
 .sl .gal .g2{grid-column:auto;grid-row:span 2}
 .sl .gal .g4{grid-column:auto}
 .sl .gal .g6{grid-column:span 2}
+.sl .fcol{display:grid;grid-template-columns:1.2fr 1fr;grid-template-rows:1fr 1fr;gap:12px;aspect-ratio:4/3}
+.sl .fcol figure{margin:0;position:relative;border-radius:14px;overflow:hidden;background:#dfe6f0}
+.sl .fcol .f1{grid-row:span 2}
+.sl .fcol img{width:100%;height:100%;object-fit:cover}
+.sl .fcol figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;color:#fff;font-weight:600;font-size:15px;background:linear-gradient(transparent,rgba(9,22,40,.75))}
 .sl .vimg{border-radius:14px;overflow:hidden;margin-top:18px;aspect-ratio:16/7}
 .sl .vimg img{width:100%;height:100%;object-fit:cover}
 @media(max-width:1020px){.sl .two{grid-template-columns:1fr;gap:28px}.sl .mini{grid-template-columns:repeat(2,1fr)}.sl .gal{grid-template-columns:repeat(2,1fr)}.sl .gal .g1{grid-column:span 2}.sl .gal .g6{grid-column:span 2}}
-@media(max-width:760px){.sl .benefit{grid-template-columns:1fr}.sl .hplane{height:40px}.sl .gal{grid-auto-rows:170px}}
+@media(max-width:760px){.sl .benefit{grid-template-columns:1fr}.sl .gal{grid-auto-rows:170px}}
 @media(max-width:520px){.sl .needs,.sl .row2f{grid-template-columns:1fr}.sl .gal{grid-template-columns:1fr}.sl .gal figure{grid-column:auto!important;grid-row:auto!important}}
-@media(prefers-reduced-motion:reduce){.sl .hs,.sl .cl,.sl .cl2,.sl .pf,.sl .dash{animation:none}.sl .hs:first-child{opacity:1}}
+@media(prefers-reduced-motion:reduce){.sl .hs{animation:none}.sl .hs:first-child{opacity:1}}
 </style>
 
 <div class="sl" id="sl-top">
@@ -111,15 +107,10 @@
 
 <!-- HERO -->
 <section class="hero"><div class="hero-bg">
-  <img class="hs" style="animation-delay:0s" src="assets/hero-tented-suite.webp" alt="" width="1600" height="900">
-  <img class="hs" style="animation-delay:6s" src="assets/sunrise-balloons.webp" alt="" width="1600" height="900">
-  <img class="hs" style="animation-delay:12s" src="assets/bush-dinner-sunset.webp" alt="" width="1270" height="714">
+  <img data-no-lazy="1" data-skip-lazy="" class="skip-lazy hs" style="animation-delay:0s" src="assets/hero-tented-suite.webp" alt="" width="1600" height="900">
+  <img data-no-lazy="1" data-skip-lazy="" class="skip-lazy hs" style="animation-delay:6s" src="assets/sunrise-balloons.webp" alt="" width="1600" height="900">
+  <img data-no-lazy="1" data-skip-lazy="" class="skip-lazy hs" style="animation-delay:12s" src="assets/bush-dinner-sunset.webp" alt="" width="1270" height="714">
 </div>
-<svg class="hplane" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true">
-  <defs><g id="hpl"><g transform="rotate(90) scale(.16)"><path d="M0-110C14-110 20-90 20-60V70L0 110-20 70V-60C-20-90-14-110 0-110Z"/><path d="M20-10L130 50V70L20 40ZM-20-10L-130 50V70L-20 40Z"/><path d="M15 80L55 105V115L12 100ZM-15 80L-55 105V115L-12 100Z"/></g></g></defs>
-  <path id="hfp" d="M-20 44C300 12 600 50 900 24S1180 10 1260 30" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2" stroke-dasharray="3 10"/>
-  <use href="#hpl" fill="#ffffff"><animateMotion dur="18s" repeatCount="indefinite" rotate="auto"><mpath href="#hfp"/></animateMotion></use>
-</svg>
 <div class="w">
   <div>
     <div class="pills">
@@ -308,7 +299,7 @@
   <div><b>5.0&#9733;</b><span>Google rated, 27 reviews</span></div>
   <div><b data-count="100" data-suf="+">100+</b><span>Largest group handled</span></div>
 </div>
-<div class="acc"><span>Accredited and trusted</span><img src="https://spicetravel.co.ke/wp-content/uploads/2026/03/Logos-e1698318654509.webp" alt="IATA, Amadeus and KATA accreditation logos" width="1397" height="186" loading="lazy" onerror="this.parentNode.style.display='none'"></div></div>
+<div class="acc"><span>Accredited and trusted</span><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="https://spicetravel.co.ke/wp-content/uploads/2026/03/Logos-e1698318654509.webp" alt="IATA, Amadeus and KATA accreditation logos" width="1397" height="186" onerror="this.parentNode.style.display='none'"></div></div>
 
 <!-- DESTINATIONS MARQUEE -->
 <div class="mq" aria-hidden="true"><div class="mq-in">
@@ -348,29 +339,8 @@
       <div class="acts"><button type="button" class="btn btn-am sl-need pulse" data-need="corporate">Get a corporate quote</button><a class="l" href="/corporate-travel-management/">Corporate travel management</a></div>
     </div>
     <div>
-      <div class="slot"><svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of a team holding an outdoor meeting under an acacia tree at sunset">
-        <defs><linearGradient id="tmS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a5fa8"/><stop offset=".5" stop-color="#f3a35b"/><stop offset="1" stop-color="#ffd58a"/></linearGradient><linearGradient id="tmG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9a05a"/><stop offset="1" stop-color="#6d7d3a"/></linearGradient></defs>
-        <rect width="800" height="600" fill="url(#tmS)"/>
-        <circle cx="560" cy="330" r="92" fill="#fff4cf" opacity=".9"/>
-        <path d="M0 370L110 310 230 355 370 295 520 360 650 310 800 360V600H0Z" fill="#7d5a45" opacity=".5"/>
-        <rect y="385" width="800" height="215" fill="url(#tmG)"/>
-        <g fill="#2d4a2b"><path d="M120 400C122 330 118 270 100 230L128 232C122 270 128 330 136 400Z" fill="#4a3320"/><ellipse cx="120" cy="215" rx="120" ry="30"/><ellipse cx="60" cy="235" rx="70" ry="20"/><ellipse cx="190" cy="232" rx="80" ry="20"/></g>
-        <ellipse cx="450" cy="468" rx="290" ry="42" fill="#5a3818" opacity=".35"/>
-        <g id="tmp" transform="translate(0 -30)">
-          <g><circle cx="250" cy="326" r="20" fill="#8d5524"/><path d="M222 436V392a28 28 0 0 1 56 0V436Z" fill="#0c71c3"/></g>
-          <g><circle cx="340" cy="318" r="20" fill="#c68642"/><path d="M312 436V384a28 28 0 0 1 56 0V436Z" fill="#ffffff"/></g>
-          <g><circle cx="430" cy="322" r="20" fill="#6b3e1d"/><path d="M402 436V388a28 28 0 0 1 56 0V436Z" fill="#f5a623"/></g>
-          <g><circle cx="520" cy="318" r="20" fill="#e0ac69"/><path d="M492 436V384a28 28 0 0 1 56 0V436Z" fill="#0d1f3c"/></g>
-          <g><circle cx="610" cy="326" r="20" fill="#8d5524"/><path d="M582 436V392a28 28 0 0 1 56 0V436Z" fill="#2e9e6b"/></g>
-        </g>
-        <ellipse cx="430" cy="446" rx="270" ry="40" fill="#7a4a22"/>
-        <ellipse cx="430" cy="438" rx="270" ry="36" fill="#9b6330"/>
-        <rect x="395" y="408" width="64" height="34" rx="4" fill="#1c2a44"/><rect x="401" y="413" width="52" height="22" rx="2" fill="#7cc3f2"/>
-        <rect x="290" y="428" width="44" height="26" rx="3" fill="#ffffff"/><rect x="520" y="426" width="44" height="26" rx="3" fill="#ffffff"/>
-        <circle cx="352" cy="442" r="9" fill="#ffffff"/><circle cx="498" cy="444" r="9" fill="#ffffff"/>
-        <g class="pf" fill="#ffffff" opacity=".85"><path d="M610 120l8-18 8 18 18 8-18 8-8 18-8-18-18-8z" opacity=".0"/></g>
-      </svg><img data-opt src="assets/team-meeting-outdoors.webp" alt="Corporate team holding a meeting outdoors at a Kenyan safari lodge" loading="lazy" onerror="this.remove()"></div>
-      <div class="vimg"><img src="assets/safari-vehicle.webp" alt="Spice Travel safari vehicle used for group transport in Kenya" loading="lazy" width="900" height="394"></div>
+      <div class="slot"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/lodge-pool-valley.webp" alt="Safari lodge pool with valley views, a setting for corporate retreats and open-air team meetings" width="900" height="526"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" data-opt src="assets/team-meeting-outdoors.webp" alt="Corporate team holding a meeting outdoors at a Kenyan safari lodge" onerror="this.remove()"></div>
+      <div class="vimg"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/safari-vehicle.webp" alt="Spice Travel safari vehicle used for group transport in Kenya" width="900" height="394"></div>
     </div>
   </div>
 </div></section>
@@ -420,16 +390,11 @@
 <!-- FLIGHTS -->
 <section class="sec" id="sl-flights"><div class="w"><div class="two">
   <div>
-    <div class="slot"><svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of an aeroplane flying above the clouds">
-      <defs><linearGradient id="skG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0c71c3"/><stop offset=".55" stop-color="#6fbdf0"/><stop offset="1" stop-color="#dff1ff"/></linearGradient><radialGradient id="skS" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff6d8" stop-opacity="1"/><stop offset="1" stop-color="#fff6d8" stop-opacity="0"/></radialGradient></defs>
-      <rect width="800" height="600" fill="url(#skG)"/>
-      <circle cx="650" cy="140" r="150" fill="url(#skS)"/>
-      <g class="cl" fill="#ffffff" opacity=".92"><ellipse cx="170" cy="150" rx="90" ry="26"/><ellipse cx="230" cy="136" rx="62" ry="30"/><ellipse cx="120" cy="160" rx="56" ry="20"/></g>
-      <g class="cl2" fill="#ffffff" opacity=".85"><ellipse cx="610" cy="300" rx="100" ry="28"/><ellipse cx="670" cy="284" rx="64" ry="30"/><ellipse cx="560" cy="310" rx="60" ry="20"/></g>
-      <g fill="#ffffff"><ellipse cx="120" cy="560" rx="220" ry="90"/><ellipse cx="380" cy="590" rx="260" ry="100"/><ellipse cx="660" cy="570" rx="240" ry="95"/></g>
-      <path class="dash" d="M40 470C200 360 380 420 520 270S720 120 780 90" fill="none" stroke="#ffffff" stroke-width="3" stroke-dasharray="6 10" opacity=".9"/>
-      <g class="pf"><g transform="translate(520 270) rotate(42) scale(1.1)"><ellipse cx="0" cy="40" rx="150" ry="16" fill="#0a4f8a" opacity=".18"/><g fill="#ffffff"><path d="M0-110C14-110 20-90 20-60V70L0 110-20 70V-60C-20-90-14-110 0-110Z"/><path d="M20-10L130 50V70L20 40ZM-20-10L-130 50V70L-20 40Z" fill="#e8f1fb"/><path d="M15 80L55 105V115L12 100ZM-15 80L-55 105V115L-12 100Z" fill="#e8f1fb"/></g><g fill="#0c71c3"><rect x="-6" y="-80" width="12" height="9" rx="3"/><rect x="-6" y="-62" width="12" height="9" rx="3"/><rect x="-6" y="-44" width="12" height="9" rx="3"/></g></g></g>
-    </svg><img data-opt src="assets/airplane-wing-sunrise.webp" alt="Aeroplane wing above the clouds at sunrise" loading="lazy" onerror="this.remove()"></div>
+    <div class="fcol">
+      <figure class="f1"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/zanzibar.webp" alt="Resort pool and palm trees in Zanzibar" width="900" height="675"><figcaption>Zanzibar</figcaption></figure>
+      <figure class="f2"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/mauritius.webp" alt="Mauritius mountains, palms and pool" width="900" height="675"><figcaption>Mauritius</figcaption></figure>
+      <figure class="f3"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/turkey.webp" alt="Istanbul rooftops and old town in Turkey" width="900" height="675"><figcaption>Istanbul</figcaption></figure>
+    </div>
   </div>
   <div>
     <span class="eyebrow">Flight booking</span>
@@ -508,13 +473,13 @@
 <section class="sec" style="padding-bottom:0"><div class="w">
   <div class="head" style="margin-bottom:26px"><span class="eyebrow">Experiences</span><h2>Where your next trip could take you</h2></div>
   <div class="gal">
-    <figure class="g1"><img src="assets/lodge-pool-valley.webp" alt="Safari lodge pool with valley views for group retreats" loading="lazy" width="900" height="526"><figcaption>Bush lodges with room for the whole team</figcaption></figure>
-    <figure class="g2"><img src="assets/balloon-sunrise-real.webp" alt="Hot air balloons over the Maasai Mara at sunrise" loading="lazy" width="900" height="900"><figcaption>Sunrise balloon safaris</figcaption></figure>
-    <figure class="g3"><img src="assets/beach-resort-pool.webp" alt="Beachfront resort pool on the Kenyan coast" loading="lazy" width="900" height="514"><figcaption>Beach retreats on the coast</figcaption></figure>
-    <figure class="g4"><img src="assets/leopard-tree.webp" alt="Leopard resting in a tree on a Kenya safari" loading="lazy" width="900" height="900"><figcaption>Game drives with expert guides</figcaption></figure>
-    <figure class="g5"><img src="assets/pearl-mara-deck.webp" alt="Luxury lodge deck in the Maasai Mara at dusk" loading="lazy" width="1000" height="750"><figcaption>Luxury Mara camps</figcaption></figure>
-    <figure class="g6"><img src="assets/bush-dinner-sunset.webp" alt="Group sundowner dinner in the Kenyan bush" loading="lazy" width="900" height="506"><figcaption>Sundowner dinners in the bush</figcaption></figure>
-    <figure class="g7"><img src="assets/hartebeest-herd.webp" alt="Hartebeest herd on a Kenya game drive" loading="lazy" width="900" height="900"><figcaption>Wildlife on your doorstep</figcaption></figure>
+    <figure class="g1"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/lodge-pool-valley.webp" alt="Safari lodge pool with valley views for group retreats" width="900" height="526"><figcaption>Bush lodges with room for the whole team</figcaption></figure>
+    <figure class="g2"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/balloon-sunrise-real.webp" alt="Hot air balloons over the Maasai Mara at sunrise" width="900" height="900"><figcaption>Sunrise balloon safaris</figcaption></figure>
+    <figure class="g3"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/beach-resort-pool.webp" alt="Beachfront resort pool on the Kenyan coast" width="900" height="514"><figcaption>Beach retreats on the coast</figcaption></figure>
+    <figure class="g4"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/leopard-tree.webp" alt="Leopard resting in a tree on a Kenya safari" width="900" height="900"><figcaption>Game drives with expert guides</figcaption></figure>
+    <figure class="g5"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/pearl-mara-deck.webp" alt="Luxury lodge deck in the Maasai Mara at dusk" width="1000" height="750"><figcaption>Luxury Mara camps</figcaption></figure>
+    <figure class="g6"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/bush-dinner-sunset.webp" alt="Group sundowner dinner in the Kenyan bush" width="900" height="506"><figcaption>Sundowner dinners in the bush</figcaption></figure>
+    <figure class="g7"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/hartebeest-herd.webp" alt="Hartebeest herd on a Kenya game drive" width="900" height="900"><figcaption>Wildlife on your doorstep</figcaption></figure>
   </div>
 </div></section>
 

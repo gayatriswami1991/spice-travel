@@ -31,7 +31,7 @@ RETREAT = ['Taita Hills Safari Resort', 'Sarova Whitesands, Mombasa', 'Loisaba L
 
 def card(c, retreat=False):
     if c['img']:
-        ph = '<div class="ph"><img src="assets/%s.webp" alt="%s" loading="lazy" width="900" height="675"><span class="cat">%s</span></div>' % (c['img'], c['alt'], c['badge'])
+        ph = '<div class="ph"><img data-no-lazy="1" data-skip-lazy="" class="skip-lazy" src="assets/%s.webp" alt="%s" width="900" height="675"><span class="cat">%s</span></div>' % (c['img'], c['alt'], c['badge'])
     else:
         ph = '<div class="ph np">%s<span class="l">%s</span><span class="cat">%s</span></div>' % (c['icon'], c['region'], c['badge'])
     bl = ''.join('<li>%s</li>' % b for b in c['bl'])
@@ -60,12 +60,34 @@ def embed(text):
         tag = m.group(0)
         name = re.search(r'src="assets/([^"]+)"', tag).group(1)
         return tag if (d / 'assets' / name).exists() else ''
-    text = re.sub(r'<img data-opt [^>]*>', opt, text)
+    text = re.sub(r'<img [^>]*data-opt[^>]*>', opt, text)
     text = text.replace(' onerror="this.remove()"', '')
-    def r(m):
-        f = d / 'assets' / m.group(1)
-        return 'data:image/webp;base64,' + base64.b64encode(f.read_bytes()).decode()
-    return re.sub(r"assets/([A-Za-z0-9_\-\.]+)", r, text)
+    # CSS background urls would embed a second copy: blank them, a small script reuses the hero image instead
+    text = re.sub(r"url\('assets/[^']+'\)", 'none', text)
+    seen = set()
+    PH = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+    def img(m):
+        tag = m.group(0)
+        mm = re.search(r'src="assets/([^"]+)"', tag)
+        if not mm:
+            return tag
+        name = mm.group(1)
+        key = name.rsplit('.', 1)[0]
+        if name in seen:
+            return tag.replace(mm.group(0), 'data-ik="%s" src="%s"' % (key, PH))
+        seen.add(name)
+        data = 'data:image/webp;base64,' + base64.b64encode((d / 'assets' / name).read_bytes()).decode()
+        return tag.replace(mm.group(0), 'data-ik="%s" src="%s"' % (key, data))
+    text = re.sub(r'<img [^>]*>', img, text)
+    reuse = ('<script>\n(function () {\n'
+             '  var m = {};\n'
+             '  var all = document.querySelectorAll("img[data-ik]");\n'
+             '  for (var i = 0; i < all.length; i++) { if (all[i].src.length > 300) { m[all[i].getAttribute("data-ik")] = all[i].src; } }\n'
+             '  for (var j = 0; j < all.length; j++) { var k = all[j].getAttribute("data-ik"); if (all[j].src.length < 300) { if (m[k]) { all[j].src = m[k]; } } }\n'
+             '  var c = document.querySelector(".sl .cine");\n'
+             '  if (c) { if (m["sunrise-balloons"]) { c.style.backgroundImage = "url(" + m["sunrise-balloons"] + ")"; } }\n'
+             '})();\n</script>')
+    return text + '\n' + reuse
 emb = embed(snip)
 (d / 'divi-snippet-with-images.html').write_text(emb)
 
